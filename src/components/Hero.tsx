@@ -3,25 +3,33 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-secondary py-20 px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
-      <div className="relative mx-auto max-w-4xl text-center">
-        <h1 className="mb-6 text-5xl font-bold tracking-tight text-primary-foreground sm:text-6xl lg:text-7xl">
-          Salma Alrowaie
-        </h1>
-        <div className="mb-8 space-y-4 text-lg text-primary-foreground/90 sm:text-xl">
-          <p>
-            Pursuing Bachelor's Degree in Mechanical Engineering at Purdue University
-          </p>
-          <p>
-            Sponsored by the King Abdulaziz University of Science and Technology (KAUST) through the KAUST Gifted Student Program (KGSP)
-          </p>
+    <section className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8" style={{ background: 'var(--gradient-hero)' }}>
+      <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px]" />
+      <div className="absolute top-10 right-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+      
+      <div className="relative mx-auto max-w-5xl">
+        <div className="text-center mb-12">
+          <h1 className="mb-6 text-6xl font-extrabold tracking-tight text-white sm:text-7xl lg:text-8xl">
+            Salma Alrowaie
+          </h1>
+          <div className="mx-auto max-w-3xl space-y-3 text-lg text-white/90 sm:text-xl">
+            <p className="font-medium">
+              Master's in Technology, Innovation, and Entrepreneurship at KAUST
+            </p>
+            <p>
+              Bachelor's Degree in Mechanical Engineering from Purdue University
+            </p>
+            <p className="text-base text-white/80">
+              Sponsored by King Abdulaziz University of Science and Technology (KAUST) through the KAUST Gifted Student Program (KGSP)
+            </p>
+          </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
+        
+        <div className="flex flex-wrap justify-center gap-4 mt-10">
           <Button
-            variant="secondary"
             size="lg"
-            className="gap-2 bg-card text-card-foreground hover:bg-card/90"
+            className="gap-2 bg-white/95 text-primary hover:bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             asChild
           >
             <a href="mailto:salmarowaie@gmail.com">
@@ -30,20 +38,9 @@ export const Hero = () => {
             </a>
           </Button>
           <Button
-            variant="secondary"
             size="lg"
-            className="gap-2 bg-card text-card-foreground hover:bg-card/90"
-            asChild
-          >
-            <a href="mailto:alrowaie@purdue.edu">
-              <Mail className="h-5 w-5" />
-              alrowaie@purdue.edu
-            </a>
-          </Button>
-          <Button
-            variant="secondary"
-            size="lg"
-            className="gap-2 bg-card text-card-foreground hover:bg-card/90"
+            variant="outline"
+            className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             asChild
           >
             <a
@@ -52,7 +49,7 @@ export const Hero = () => {
               rel="noopener noreferrer"
             >
               <Linkedin className="h-5 w-5" />
-              LinkedIn Profile
+              LinkedIn
             </a>
           </Button>
         </div>
