@@ -45,46 +45,70 @@ const ProjectDetail = () => {
 
         <div className="grid gap-6">
           <Card className="p-6">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground">Project Summary</h2>
-            <p className="text-foreground/80 leading-relaxed">{project.summary}</p>
+            <h2 className="mb-4 text-2xl font-semibold text-foreground">Objectives</h2>
+            <p className="text-foreground/80 leading-relaxed">{project.objectives}</p>
           </Card>
 
           <Card className="p-6">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground">My Role</h2>
-            <p className="text-foreground/80 leading-relaxed">{project.role}</p>
+            <h2 className="mb-4 text-2xl font-semibold text-foreground">Outcomes & Contribution</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-medium text-foreground mb-2">Outcomes</h3>
+                <p className="text-foreground/80 leading-relaxed">{project.outcomes}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-foreground mb-2">My Contribution</h3>
+                <p className="text-foreground/80 leading-relaxed">{project.contribution}</p>
+              </div>
+            </div>
           </Card>
 
           <Card className="p-6">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground">Outcome</h2>
-            <p className="text-foreground/80 leading-relaxed">{project.outcome}</p>
-          </Card>
-
-          <Card className="p-6">
-            <h2 className="mb-4 text-2xl font-semibold text-foreground">What I Learned</h2>
-            <p className="text-foreground/80 leading-relaxed">{project.learnings}</p>
+            <h2 className="mb-4 text-2xl font-semibold text-foreground">Technical Details & Skills</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-medium text-foreground mb-2">Technical Details</h3>
+                <p className="text-foreground/80 leading-relaxed">{project.technicalDetails}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-foreground mb-2">Skills Applied</h3>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {project.skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </Card>
 
           {project.media && (
-            <>
+            <Card className="p-6">
+              <h2 className="mb-4 text-2xl font-semibold text-foreground">Visuals & Resources</h2>
+              
               {project.media.images && project.media.images.length > 0 && (
-                <Card className="p-6">
-                  <h2 className="mb-4 text-2xl font-semibold text-foreground">Project Images</h2>
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium text-foreground mb-3">Images</h3>
                   <div className="grid gap-4 sm:grid-cols-2">
                     {project.media.images.map((img, index) => (
                       <img
                         key={index}
                         src={img}
                         alt={`${project.title} - Image ${index + 1}`}
-                        className="rounded-lg border border-border"
+                        className="rounded-lg border border-border w-full"
                       />
                     ))}
                   </div>
-                </Card>
+                </div>
               )}
 
               {project.media.videos && project.media.videos.length > 0 && (
-                <Card className="p-6">
-                  <h2 className="mb-4 text-2xl font-semibold text-foreground">Project Videos</h2>
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium text-foreground mb-3">Videos</h3>
                   <div className="grid gap-4">
                     {project.media.videos.map((video, index) => (
                       <video
@@ -97,29 +121,29 @@ const ProjectDetail = () => {
                       </video>
                     ))}
                   </div>
-                </Card>
+                </div>
               )}
 
               {project.media.reportLinks && project.media.reportLinks.length > 0 && (
-                <Card className="p-6">
-                  <h2 className="mb-4 text-2xl font-semibold text-foreground">Related Documents</h2>
-                  <div className="space-y-3">
+                <div>
+                  <h3 className="text-lg font-medium text-foreground mb-3">Related Documents</h3>
+                  <div className="space-y-2">
                     {project.media.reportLinks.map((link, index) => (
                       <a
                         key={index}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-primary hover:text-secondary transition-colors"
+                        className="flex items-center gap-2 text-primary hover:text-accent transition-colors p-2 hover:bg-primary/5 rounded-md"
                       >
                         <ExternalLink className="h-4 w-4" />
-                        {link.title}
+                        <span className="font-medium">{link.title}</span>
                       </a>
                     ))}
                   </div>
-                </Card>
+                </div>
               )}
-            </>
+            </Card>
           )}
         </div>
       </div>

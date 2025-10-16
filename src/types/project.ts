@@ -4,10 +4,11 @@ export interface Project {
   year: number;
   semester: string;
   imageUrl: string;
-  summary: string;
-  role: string;
-  outcome: string;
-  learnings: string;
+  objectives: string;
+  outcomes: string;
+  contribution: string;
+  technicalDetails: string;
+  skills: string[];
   media?: {
     images?: string[];
     videos?: string[];

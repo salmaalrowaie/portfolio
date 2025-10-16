@@ -5,24 +5,32 @@ import { projects } from "@/data/projects";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Hero />
-      
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-foreground mb-4 tracking-tight">
-            Engineering Portfolio
-          </h2>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" style={{ boxShadow: 'var(--shadow-accent)' }} />
+      <div className="min-h-screen grid lg:grid-cols-2">
+        {/* Left side - Dark Hero Section */}
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-8 lg:p-12">
+          <Hero />
         </div>
         
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        {/* Right side - Light Projects Grid */}
+        <div className="bg-gray-50 dark:bg-gray-950 flex items-center justify-center p-8 lg:p-12">
+          <div className="w-full max-w-2xl">
+            <div className="mb-12">
+              <h2 className="text-4xl font-bold text-foreground mb-3 tracking-tight">
+                Engineering Projects
+              </h2>
+              <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent rounded-full" />
+            </div>
+            
+            <div className="grid gap-6 sm:grid-cols-2">
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <footer className="border-t border-border/50 bg-secondary/30 py-12 backdrop-blur-sm">
+      <footer className="border-t border-border/50 bg-secondary/30 py-8 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4 text-center text-muted-foreground sm:px-6 lg:px-8">
           <p className="text-sm">© {new Date().getFullYear()} Salma Alrowaie. All rights reserved.</p>
         </div>
