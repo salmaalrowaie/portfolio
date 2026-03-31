@@ -15,7 +15,7 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 24 100% 50%;
+    --primary: 25 100% 57%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 12%;
@@ -32,21 +32,21 @@
 
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 24 100% 50%;
+    --ring: 25 100% 57%;
 
     --radius: 0.5rem;
 
     --shadow-card: 0 0 0 1px hsl(0 0% 16%);
-    --shadow-card-hover: 0 0 40px hsl(24 100% 50% / 0.15);
+    --shadow-card-hover: 0 0 40px hsl(25 100% 57% / 0.15);
 
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 24 100% 50%;
+    --sidebar-primary: 25 100% 57%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 12%;
     --sidebar-accent-foreground: 0 0% 96%;
     --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 24 100% 50%;
+    --sidebar-ring: 25 100% 57%;
   }
 }
 
@@ -81,7 +81,7 @@
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(24 100% 50%);
+  background: hsl(25 100% 57%);
 }
 
 /* Noise texture overlay */
