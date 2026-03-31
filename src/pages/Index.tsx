@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
+import { LayoutGrid, List } from "lucide-react";
 
 const Index = () => {
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+
   return (
     <div className="min-h-screen bg-background noise-bg">
       <Navbar />
@@ -18,20 +22,58 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-20 text-center"
+            className="mb-16 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6"
           >
-            <p className="mono text-primary text-sm tracking-widest uppercase mb-4">Portfolio</p>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
-              Engineering Projects
-            </h2>
-            <div className="mt-4 h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+            <div>
+              <p className="mono text-primary text-sm tracking-widest uppercase mb-4">Portfolio</p>
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
+                Engineering Projects
+              </h2>
+              <div className="mt-4 h-px w-24 bg-gradient-to-r from-primary to-transparent" />
+            </div>
+
+            {/* View Toggle */}
+            <div className="flex items-center gap-1 p-1 rounded-lg border border-border bg-secondary/50">
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded-md transition-all duration-300 ${
+                  viewMode === "list"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                aria-label="List view"
+              >
+                <List className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 rounded-md transition-all duration-300 ${
+                  viewMode === "grid"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                aria-label="Grid view"
+              >
+                <LayoutGrid className="h-4 w-4" />
+              </button>
+            </div>
           </motion.div>
 
-          <div className="space-y-20 lg:space-y-32">
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className={
+              viewMode === "grid"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                : "space-y-20 lg:space-y-32"
+            }
+          >
             {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+              <ProjectCard key={project.id} project={project} index={index} viewMode={viewMode} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
