@@ -6,105 +6,56 @@ import { ArrowUpRight } from "lucide-react";
 interface ProjectCardProps {
   project: Project;
   index: number;
-  viewMode: "list" | "grid";
 }
 
-export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
+export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const navigate = useNavigate();
-
-  if (viewMode === "grid") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-        onClick={() => navigate(`/project/${project.id}`)}
-        className="group cursor-pointer relative"
-      >
-        <div className="relative overflow-hidden rounded-xl bg-secondary aspect-[4/3]">
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute bottom-4 right-4 h-9 w-9 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-            <ArrowUpRight className="h-4 w-4 text-primary-foreground" />
-          </div>
-        </div>
-        <div className="mt-4 space-y-2">
-          <div className="flex gap-3 mono text-xs tracking-wider">
-            <span className="text-primary">{project.year}</span>
-            <span className="text-muted-foreground">·</span>
-            <span className="text-muted-foreground">{project.semester}</span>
-          </div>
-          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 tracking-tight">
-            {project.title}
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {project.skills.slice(0, 2).map((skill) => (
-              <span
-                key={skill}
-                className="mono text-[10px] px-2 py-1 rounded-full border border-border text-muted-foreground"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
-
-  const isEven = index % 2 === 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       onClick={() => navigate(`/project/${project.id}`)}
-      className="group cursor-pointer relative"
+      className="group cursor-pointer"
     >
-      <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
-        {/* Image - always on left in list view */}
-        <div className="relative overflow-hidden rounded-xl bg-secondary aspect-[4/3]">
+      <div className="grid md:grid-cols-2 gap-8 items-start">
+        {/* Image */}
+        <div className="relative overflow-hidden rounded-xl bg-secondary aspect-[4/3] border border-border">
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-            <ArrowUpRight className="h-5 w-5 text-primary-foreground" />
+          <div className="absolute top-4 right-4 h-9 w-9 rounded-full bg-background/90 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 border border-border">
+            <ArrowUpRight className="h-4 w-4 text-foreground" />
           </div>
         </div>
 
-        {/* Content - always on right */}
-        <div className="space-y-4">
-          <div className="flex gap-3 mono text-xs tracking-wider">
-            <span className="text-primary">{project.year}</span>
-            <span className="text-muted-foreground">·</span>
-            <span className="text-muted-foreground">{project.semester}</span>
+        {/* Content */}
+        <div className="py-2">
+          <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
+            <span>{project.semester} {project.year}</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span>{project.role}</span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-200 mb-3">
             {project.title}
           </h3>
 
-          <p className="text-muted-foreground leading-relaxed line-clamp-2">
-            {project.objectives}
+          <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+            {project.summary}
           </p>
 
           <div className="flex flex-wrap gap-2">
-            {project.skills.slice(0, 3).map((skill) => (
+            {project.tools.map((tool) => (
               <span
-                key={skill}
-                className="mono text-xs px-3 py-1.5 rounded-full border border-border text-muted-foreground group-hover:border-primary/30 group-hover:text-primary/80 transition-colors duration-300"
+                key={tool}
+                className="text-xs px-3 py-1 rounded-full bg-secondary text-muted-foreground border border-border"
               >
-                {skill}
+                {tool}
               </span>
             ))}
           </div>
