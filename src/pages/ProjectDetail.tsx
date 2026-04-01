@@ -1,15 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { projects } from "@/data/projects";
 import { Navbar } from "@/components/Navbar";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
@@ -22,9 +22,16 @@ interface DetailBlockProps {
 const DetailBlock = ({ label, content, index }: DetailBlockProps) => {
   if (!content || content === "N/A") return null;
   return (
-    <motion.div custom={index} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-12">
-      <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">{label}</h3>
-      <p className="text-foreground/80 leading-[1.8] text-[15px]">{content}</p>
+    <motion.div
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 border-t border-foreground"
+    >
+      <h3 className="tech-label text-muted-foreground pt-0.5">{label.toUpperCase()}</h3>
+      <p className="text-foreground/80 leading-[1.8]" style={{ fontSize: "13px" }}>{content}</p>
     </motion.div>
   );
 };
@@ -38,8 +45,8 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Navbar />
         <div className="text-center">
-          <h1 className="text-3xl text-foreground mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Project Not Found</h1>
-          <Link to="/" className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors">← Back to Portfolio</Link>
+          <h1 className="text-3xl text-foreground mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>PROJECT NOT FOUND</h1>
+          <Link to="/" className="tech-label text-muted-foreground hover:text-foreground">[ ← BACK ]</Link>
         </div>
       </div>
     );
@@ -63,28 +70,27 @@ const ProjectDetail = () => {
       <Navbar />
 
       {/* Header */}
-      <section className="pt-32 pb-20">
-        <div className="mx-auto max-w-7xl px-8 md:px-12">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors mb-16">
-              <ArrowLeft className="h-3 w-3" />
-              Back
+      <section className="pt-24 pb-16 border-b border-foreground">
+        <div className="px-6 md:px-10">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+            <Link to="/" className="tech-label text-muted-foreground hover:text-foreground transition-colors mb-12 inline-block">
+              [ ← BACK TO PROJECTS ]
             </Link>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground mb-6">
-              <span>{project.semester} {project.year}</span>
-              <span className="w-4 h-px bg-muted-foreground/40" />
-              <span>{project.role}</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
+            <div className="flex items-center gap-4 tech-label text-muted-foreground mb-6">
+              <span>{project.semester.toUpperCase()} {project.year}</span>
+              <span>—</span>
+              <span>{project.role.toUpperCase()}</span>
             </div>
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6 max-w-4xl"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1] mb-6 max-w-4xl"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {project.title}
+              {project.title.toUpperCase()}
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">{project.summary}</p>
+            <p className="text-muted-foreground leading-[1.8] max-w-2xl" style={{ fontSize: "14px" }}>{project.summary}</p>
           </motion.div>
 
           <motion.div
@@ -94,8 +100,8 @@ const ProjectDetail = () => {
             className="flex flex-wrap gap-2 mt-8"
           >
             {project.tools.map((tool) => (
-              <span key={tool} className="text-[11px] uppercase tracking-[0.1em] px-3 py-1.5 border border-border text-muted-foreground">
-                {tool}
+              <span key={tool} className="tech-label px-3 py-1.5 border border-foreground">
+                {tool.toUpperCase()}
               </span>
             ))}
           </motion.div>
@@ -103,33 +109,31 @@ const ProjectDetail = () => {
       </section>
 
       {/* Hero image */}
-      <section className="pb-24">
-        <div className="mx-auto max-w-6xl px-8 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="aspect-[16/9] bg-muted overflow-hidden"
-          >
-            <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
-          </motion.div>
-        </div>
+      <section className="border-b border-foreground">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="aspect-[16/9] bg-muted overflow-hidden"
+        >
+          <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
+        </motion.div>
       </section>
 
       {/* Content sections */}
-      <section className="pb-32">
-        <div className="mx-auto max-w-7xl px-8 md:px-12 space-y-14">
+      <section className="py-16">
+        <div className="px-6 md:px-10 max-w-5xl">
           {sections.map((section, i) => (
             <DetailBlock key={section.label} label={section.label} content={section.content} index={i} />
           ))}
 
           {/* Skills */}
-          <motion.div custom={10} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-12">
-            <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">Skills Applied</h3>
+          <motion.div custom={10} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 border-t border-foreground">
+            <h3 className="tech-label text-muted-foreground">SKILLS APPLIED</h3>
             <div className="flex flex-wrap gap-2">
               {project.skills.map((skill) => (
-                <span key={skill} className="text-sm px-4 py-2 border border-border text-foreground/70">
-                  {skill}
+                <span key={skill} className="tech-label px-3 py-1.5 border border-foreground text-foreground">
+                  {skill.toUpperCase()}
                 </span>
               ))}
             </div>
@@ -137,13 +141,13 @@ const ProjectDetail = () => {
 
           {/* Media */}
           {project.media && (project.media.images?.length! > 0 || project.media.videos?.length! > 0 || project.media.reportLinks?.length! > 0) && (
-            <motion.div custom={11} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-12">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">Visuals</h3>
+            <motion.div custom={11} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 border-t border-foreground">
+              <h3 className="tech-label text-muted-foreground">VISUALS</h3>
               <div>
                 {project.media.images && project.media.images.length > 0 && (
                   <div className="grid gap-4 sm:grid-cols-2 mb-6">
                     {project.media.images.map((img, idx) => (
-                      <img key={idx} src={img} alt={`${project.title} ${idx + 1}`} className="w-full" />
+                      <img key={idx} src={img} alt={`${project.title} ${idx + 1}`} className="w-full border border-foreground" />
                     ))}
                   </div>
                 )}
@@ -151,7 +155,7 @@ const ProjectDetail = () => {
                 {project.media.videos && project.media.videos.length > 0 && (
                   <div className="grid gap-4 mb-6">
                     {project.media.videos.map((video, idx) => (
-                      <video key={idx} controls className="w-full">
+                      <video key={idx} controls className="w-full border border-foreground">
                         <source src={video} />
                       </video>
                     ))}
@@ -159,17 +163,17 @@ const ProjectDetail = () => {
                 )}
 
                 {project.media.reportLinks && project.media.reportLinks.length > 0 && (
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {project.media.reportLinks.map((link, idx) => (
                       <a
                         key={idx}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 py-3 border-b border-border hover:text-muted-foreground transition-colors text-foreground"
+                        className="flex items-center gap-3 py-3 border-b border-foreground hover:bg-foreground hover:text-background transition-colors px-2"
                       >
-                        <ExternalLink className="h-4 w-4 shrink-0" />
-                        <span className="text-sm">{link.title}</span>
+                        <ExternalLink className="h-3 w-3 shrink-0" />
+                        <span className="tech-label">{link.title.toUpperCase()}</span>
                       </a>
                     ))}
                   </div>
@@ -181,12 +185,12 @@ const ProjectDetail = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-10">
-        <div className="mx-auto max-w-7xl px-8 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">© {new Date().getFullYear()} Salma Alrowaie</p>
-          <div className="flex gap-8">
-            <a href="mailto:salmarowaie@gmail.com" className="text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors duration-300">Email</a>
-            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors duration-300">LinkedIn</a>
+      <footer className="border-t border-foreground py-6">
+        <div className="px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="tech-label text-muted-foreground">© {new Date().getFullYear()} SALMA ALROWAIE</span>
+          <div className="flex gap-6">
+            <a href="mailto:salmarowaie@gmail.com" className="tech-label text-muted-foreground hover:text-foreground transition-colors">EMAIL</a>
+            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="tech-label text-muted-foreground hover:text-foreground transition-colors">LINKEDIN</a>
           </div>
         </div>
       </footer>

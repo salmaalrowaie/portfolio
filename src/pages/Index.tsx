@@ -14,44 +14,40 @@ const Index = () => {
       <Navbar />
       <Hero />
 
-      <div className="section-divider mx-8 md:mx-12" />
       <AboutSection />
 
-      <div className="section-divider mx-8 md:mx-12" />
-
       {/* Featured Projects */}
-      <section id="projects" className="py-32">
-        <div className="mx-auto max-w-7xl px-8 md:px-12">
-          <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-24 mb-20">
+      <section id="projects" className="py-24 border-b border-foreground">
+        <div className="px-6 md:px-10">
+          <div className="grid lg:grid-cols-[300px_1fr] gap-12 mb-16">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="editorial-number text-5xl">02.</span>
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-3">Work</p>
+              <p className="bracket-label text-muted-foreground">[ SELECTED WORK ]</p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
               <h2
-                className="text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.15] mb-4"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="text-3xl md:text-4xl text-foreground mb-3"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                Selected <em>projects</em>
+                FEATURED PROJECTS
               </h2>
-              <p className="text-muted-foreground text-[15px] max-w-lg">
-                A curated selection of engineering work — click any project for the full case study.
+              <p className="tech-label text-muted-foreground">
+                CLICK ANY PROJECT FOR THE FULL CASE STUDY
               </p>
             </motion.div>
           </div>
 
-          <div className="space-y-24 lg:space-y-32">
+          <div className="space-y-6">
             {projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
@@ -59,27 +55,22 @@ const Index = () => {
         </div>
       </section>
 
-      <div className="section-divider mx-8 md:mx-12" />
       <SkillsSection />
-
-      <div className="section-divider mx-8 md:mx-12" />
       <ExperienceSection />
-
-      <div className="section-divider mx-8 md:mx-12" />
       <ContactSection />
 
       {/* Footer */}
-      <footer className="border-t border-border py-10">
-        <div className="mx-auto max-w-7xl px-8 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
-            © {new Date().getFullYear()} Salma Alrowaie
-          </p>
-          <div className="flex gap-8">
-            <a href="mailto:salmarowaie@gmail.com" className="text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors duration-300">
-              Email
+      <footer className="border-t border-foreground py-6">
+        <div className="px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="tech-label text-muted-foreground">
+            © {new Date().getFullYear()} SALMA ALROWAIE
+          </span>
+          <div className="flex gap-6">
+            <a href="mailto:salmarowaie@gmail.com" className="tech-label text-muted-foreground hover:text-foreground transition-colors">
+              EMAIL
             </a>
-            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors duration-300">
-              LinkedIn
+            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="tech-label text-muted-foreground hover:text-foreground transition-colors">
+              LINKEDIN
             </a>
           </div>
         </div>

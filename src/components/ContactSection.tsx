@@ -2,68 +2,61 @@ import { motion } from "framer-motion";
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-32">
-      <div className="mx-auto max-w-7xl px-8 md:px-12">
-        <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-24">
-          {/* Section label */}
+    <section id="contact" className="py-24">
+      <div className="px-6 md:px-10">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-12">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="editorial-number text-5xl">05.</span>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-3">Contact</p>
+            <p className="bracket-label text-muted-foreground">[ CONTACT ]</p>
           </motion.div>
 
-          {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-2xl"
           >
-            <h2
-              className="text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.15] mb-8"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Let's build something
-              <br />
-              <em>together</em>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              LET'S CONNECT
             </h2>
 
-            <p className="text-muted-foreground text-[15px] leading-[1.8] mb-14 max-w-lg">
+            <p className="text-muted-foreground leading-[1.8] mb-12" style={{ fontSize: "13px" }}>
               Open to opportunities in mechanical design, product development, and R&D engineering. Feel free to reach out.
             </p>
 
-            <div className="space-y-8">
-              <div className="border-t border-border pt-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Email</p>
-                <a href="mailto:salmarowaie@gmail.com" className="text-foreground hover:text-muted-foreground transition-colors text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  salmarowaie@gmail.com
-                </a>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a
+                href="mailto:salmarowaie@gmail.com"
+                className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200 group"
+              >
+                <span className="tech-label opacity-50 mb-2">EMAIL</span>
+                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>SALMAROWAIE@GMAIL.COM</span>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/salma-alrowaie/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200"
+              >
+                <span className="tech-label opacity-50 mb-2">LINKEDIN</span>
+                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>SALMA-ALROWAIE</span>
+              </a>
+
+              <div className="info-box flex flex-col">
+                <span className="tech-label text-muted-foreground mb-2">LOCATION</span>
+                <span className="tech-label text-foreground" style={{ fontSize: "12px" }}>KAUST, SAUDI ARABIA</span>
               </div>
 
-              <div className="border-t border-border pt-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">LinkedIn</p>
-                <a
-                  href="https://www.linkedin.com/in/salma-alrowaie/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-muted-foreground transition-colors text-lg"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  linkedin.com/in/salma-alrowaie
-                </a>
-              </div>
-
-              <div className="border-t border-border pt-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Location</p>
-                <p className="text-foreground text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  KAUST, Saudi Arabia
-                </p>
-              </div>
+              <a href="#" className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200">
+                <span className="tech-label opacity-50 mb-2">RESUME</span>
+                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>DOWNLOAD PDF</span>
+              </a>
             </div>
           </motion.div>
         </div>
