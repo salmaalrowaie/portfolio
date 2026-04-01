@@ -3,57 +3,47 @@ import { skillCategories } from "@/data/experience";
 
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-32">
-      <div className="mx-auto max-w-7xl px-8 md:px-12">
-        <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-24">
-          {/* Section label */}
+    <section id="skills" className="py-24 border-b border-foreground">
+      <div className="px-6 md:px-10">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-12">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="editorial-number text-5xl">03.</span>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-3">Skills</p>
+            <p className="bracket-label text-muted-foreground">[ CORE THREADS OF MY WORK ]</p>
           </motion.div>
 
-          {/* Content */}
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl text-foreground mb-16 leading-[1.15]"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Core threads of <em>my work</em>
-            </motion.h2>
+          <div className="space-y-0">
+            {skillCategories.map((category, i) => (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="border-t border-foreground py-6 grid md:grid-cols-[200px_1fr] gap-4 md:gap-8"
+              >
+                <div className="flex items-baseline gap-3">
+                  <span className="tech-label text-muted-foreground">{String(i + 1).padStart(2, "0")}.</span>
+                  <span className="tech-label text-foreground font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "13px" }}>
+                    {category.category.toUpperCase()}
+                  </span>
+                </div>
 
-            <div className="space-y-12">
-              {skillCategories.map((category, i) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="border-t border-border pt-8"
-                >
-                  <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">{category.category}</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {category.items.map((item) => (
-                      <span
-                        key={item}
-                        className="text-sm text-foreground px-4 py-2 border border-border hover:bg-foreground hover:text-background transition-colors duration-300 cursor-default"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.items.map((item) => (
+                    <span
+                      key={item}
+                      className="tech-label px-3 py-1.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 cursor-default"
+                    >
+                      {item.toUpperCase()}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

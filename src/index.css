@@ -2,48 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 30 10% 10%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
-    --card: 40 15% 97%;
-    --card-foreground: 30 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
-    --popover: 40 20% 98%;
-    --popover-foreground: 30 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 30 10% 10%;
-    --primary-foreground: 40 20% 98%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 35 12% 93%;
-    --secondary-foreground: 30 10% 10%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 35 10% 92%;
-    --muted-foreground: 30 5% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 35 12% 90%;
-    --accent-foreground: 30 10% 10%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 10% 88%;
-    --input: 35 10% 88%;
-    --ring: 30 10% 10%;
+    --border: 0 0% 0%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.25rem;
+    --radius: 0px;
 
-    --sidebar-background: 40 20% 98%;
-    --sidebar-foreground: 30 10% 10%;
-    --sidebar-primary: 30 10% 10%;
-    --sidebar-primary-foreground: 40 20% 98%;
-    --sidebar-accent: 35 12% 93%;
-    --sidebar-accent-foreground: 30 10% 10%;
-    --sidebar-border: 35 10% 88%;
-    --sidebar-ring: 30 10% 10%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 0 0% 0%;
   }
 }
 
@@ -54,60 +54,83 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.01em;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    cursor: crosshair;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
   }
 
   code, .mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
   }
 }
 
-/* Elegant scrollbar */
+/* No scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: hsl(0 0% 100%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(30 10% 75%);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(30 10% 50%);
+  background: hsl(0 0% 0%);
 }
 
-/* Section divider */
-.section-divider {
-  height: 1px;
-  background: hsl(35 10% 88%);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Editorial number */
-.editorial-number {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  color: hsl(30 5% 70%);
-}
-
-/* Smooth reveal */
-.reveal-line {
-  overflow: hidden;
-}
-
-/* Selection color */
+/* Selection */
 ::selection {
-  background: hsl(30 10% 10%);
-  color: hsl(40 20% 98%);
+  background: hsl(0 0% 0%);
+  color: hsl(0 0% 100%);
+}
+
+/* Technical label style */
+.tech-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Bordered box like Sutera */
+.info-box {
+  border: 1px solid hsl(0 0% 0%);
+  padding: 16px 20px;
+}
+
+/* Grid line */
+.grid-line {
+  height: 1px;
+  background: hsl(0 0% 0%);
+}
+
+/* Annotation line */
+.annotation-line {
+  background: hsl(0 0% 0%);
+}
+
+/* Bracket label */
+.bracket-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Dashed separator */
+.dashed-sep {
+  border-top: 1px dashed hsl(0 0% 75%);
+}
+
+/* Cross marker */
+.cross-marker::before {
+  content: '+';
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: hsl(0 0% 60%);
 }

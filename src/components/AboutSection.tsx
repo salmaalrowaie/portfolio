@@ -2,56 +2,53 @@ import { motion } from "framer-motion";
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-32">
-      <div className="mx-auto max-w-7xl px-8 md:px-12">
-        <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-24">
-          {/* Section label */}
+    <section id="about" className="py-24 border-b border-foreground">
+      <div className="px-6 md:px-10">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-12">
+          {/* Label */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="editorial-number text-5xl">01.</span>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-3">About</p>
+            <p className="bracket-label text-muted-foreground">[ ABOUT ]</p>
           </motion.div>
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-3xl"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.15] mb-10" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Where imagination meets
-              <br />
-              <em>engineering precision</em>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-10" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              NOT A STUDIO — JUST ME
             </h2>
 
-            <div className="space-y-6 text-muted-foreground leading-[1.8] text-[15px]">
+            <div className="space-y-6 text-muted-foreground leading-[1.8]">
               <p>
-                Currently pursuing a <span className="text-foreground">Master's in Technology, Innovation & Entrepreneurship</span> at <span className="text-foreground">King Abdullah University of Science and Technology (KAUST)</span>, sponsored through the KGSP program.
+                I'm a mechanical engineer currently pursuing a Master's in Technology, Innovation & Entrepreneurship at KAUST, sponsored through the KGSP program.
               </p>
               <p>
-                I hold a <span className="text-foreground">Bachelor's in Mechanical Engineering</span> from <span className="text-foreground">Purdue University</span>, where I developed strong foundations in design, analysis, manufacturing, and systems thinking.
+                I hold a Bachelor's in Mechanical Engineering from Purdue University, where I developed strong foundations in design, analysis, manufacturing, and systems thinking.
               </p>
               <p>
-                My work spans product design, mechanical systems, CAD/FEA/CFD analysis, prototyping, and taking projects from concept through manufacturing. I seek opportunities in mechanical design, product development, and R&D engineering.
+                My work spans product design, mechanical systems, CAD/FEA/CFD analysis, prototyping, and taking projects from concept through manufacturing.
               </p>
             </div>
 
-            {/* Quick facts */}
-            <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            {/* Facts grid */}
+            <div className="mt-12 grid grid-cols-3 border border-foreground">
               {[
-                { label: "Education", value: "MS KAUST · BS Purdue" },
-                { label: "Focus", value: "Design & Manufacturing" },
-                { label: "Based in", value: "Saudi Arabia" },
-              ].map((fact) => (
-                <div key={fact.label}>
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">{fact.label}</p>
-                  <p className="text-sm text-foreground">{fact.value}</p>
+                { label: "EDUCATION", value: "MS KAUST\nBS PURDUE" },
+                { label: "FOCUS", value: "DESIGN &\nMANUFACTURING" },
+                { label: "SEEKING", value: "MECH DESIGN\nR&D ROLES" },
+              ].map((fact, i) => (
+                <div key={fact.label} className={`p-5 ${i < 2 ? "border-r border-foreground" : ""}`}>
+                  <p className="tech-label text-muted-foreground mb-2">{fact.label}</p>
+                  <p className="tech-label text-foreground whitespace-pre-line font-bold" style={{ fontSize: "12px" }}>{fact.value}</p>
                 </div>
               ))}
             </div>

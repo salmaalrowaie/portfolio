@@ -12,14 +12,18 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [time, setTime] = useState("");
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const tick = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }).toUpperCase());
+    };
+    tick();
+    const interval = setInterval(tick, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -34,65 +38,56 @@ export const Navbar = () => {
 
   return (
     <>
-      <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-background/95 backdrop-blur-sm border-b border-border"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-8 md:px-12">
-          <div className="flex h-20 items-center justify-between">
-            <Link to="/" className="font-serif text-foreground text-lg tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Salma Alrowaie
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-foreground">
+        <div className="px-6 md:px-10">
+          <div className="flex h-12 items-center justify-between">
+            <Link to="/" className="tech-label text-foreground tracking-widest">
+              SALMA ALROWAIE
             </Link>
 
             {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  className="tech-label text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {link.label}
                 </button>
               ))}
+              <span className="tech-label text-muted-foreground">{time}</span>
             </div>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden p-2 text-foreground"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 z-40 bg-background flex flex-col items-start justify-center px-10 md:hidden"
           >
-            <div className="space-y-8 text-center">
+            <div className="space-y-6">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.href)}
-                  className="block text-2xl text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="block text-3xl font-bold text-foreground uppercase"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   {link.label}
                 </motion.button>

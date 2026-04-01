@@ -2,82 +2,96 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="mx-auto max-w-7xl px-8 md:px-12 w-full">
-        <div className="flex flex-col items-center text-center">
-          {/* Subtle label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8"
-          >
-            Mechanical Engineer
-          </motion.p>
+    <section className="relative min-h-screen flex flex-col justify-between pt-12 overflow-hidden">
+      {/* Main content */}
+      <div className="flex-1 flex items-center">
+        <div className="w-full px-6 md:px-10">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
+            {/* Left — Big headline */}
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-[12vw] md:text-[8vw] lg:text-[6vw] leading-[0.95] text-foreground"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                DESIGN,
+                <br />
+                BY
+                <br />
+                ENGINEERING.
+              </motion.h1>
+            </div>
 
-          {/* Large editorial name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-foreground leading-[0.95] mb-8"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Salma
-            <br />
-            <em className="font-normal">Alrowaie</em>
-          </motion.h1>
+            {/* Right — Info blocks */}
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="info-box"
+              >
+                <div className="flex items-baseline justify-between mb-3">
+                  <span className="tech-label text-foreground tracking-widest font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px" }}>
+                    SALMA ALROWAIE
+                  </span>
+                  <span className="tech-label text-muted-foreground">/25</span>
+                </div>
+                <div className="space-y-1 text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace", fontSize: "12px" }}>
+                  <p>MECHANICAL ENGINEER</p>
+                  <p>+ MS TECHNOLOGY & INNOVATION (KAUST)</p>
+                  <p>+ BS MECHANICAL ENGINEERING (PURDUE)</p>
+                  <p>→ DESIGN · ANALYSIS · PROTOTYPING</p>
+                </div>
+              </motion.div>
 
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.9 }}
-            className="text-muted-foreground text-sm sm:text-base max-w-md leading-relaxed mb-12"
-          >
-            Design, analysis, prototyping, and manufacturing — 
-            turning engineering challenges into tangible solutions.
-          </motion.p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="info-box"
+              >
+                <p className="text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace", fontSize: "12px", lineHeight: 1.7 }}>
+                  Where engineering precision meets creative problem-solving. 
+                  This portfolio is a collection of what I design, build, 
+                  and learn along the way.
+                </p>
+              </motion.div>
 
-          {/* Minimal CTAs */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="flex items-center gap-8"
-          >
-            <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-xs uppercase tracking-[0.2em] text-foreground border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-300"
-            >
-              View Work
-            </button>
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
-              Get in Touch
-            </button>
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="flex gap-3"
+              >
+                <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="info-box px-4 py-2 tech-label hover:bg-foreground hover:text-background transition-colors duration-200">
+                  LINKEDIN
+                </a>
+                <a href="mailto:salmarowaie@gmail.com" className="info-box px-4 py-2 tech-label hover:bg-foreground hover:text-background transition-colors duration-200">
+                  EMAIL
+                </a>
+                <button
+                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                  className="info-box px-4 py-2 tech-label bg-foreground text-background hover:bg-transparent hover:text-foreground transition-colors duration-200"
+                >
+                  VIEW WORK
+                </button>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Bottom bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        transition={{ delay: 1.2 }}
+        className="border-t border-foreground px-6 md:px-10 py-4 flex items-center justify-between"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
-        <div className="w-px h-12 bg-border relative overflow-hidden">
-          <motion.div
-            className="w-full bg-foreground absolute top-0"
-            animate={{ height: ["0%", "100%"], top: ["0%", "0%"] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ height: "30%" }}
-          />
-        </div>
+        <span className="tech-label text-muted-foreground">SCROLL TO EXPLORE</span>
+        <span className="tech-label text-muted-foreground">KAUST, SAUDI ARABIA</span>
       </motion.div>
     </section>
   );
