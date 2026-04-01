@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Mail, Linkedin, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
@@ -35,38 +35,32 @@ export const Navbar = () => {
   return (
     <>
       <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm"
+            ? "bg-background/95 backdrop-blur-sm border-b border-border"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex h-16 items-center justify-between">
-            <Link to="/" className="text-foreground font-bold text-lg tracking-tight">
+        <div className="mx-auto max-w-7xl px-8 md:px-12">
+          <div className="flex h-20 items-center justify-between">
+            <Link to="/" className="font-serif text-foreground text-lg tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
               Salma Alrowaie
             </Link>
 
             {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-10">
               {navLinks.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-300"
                 >
                   {link.label}
                 </button>
               ))}
-              <a
-                href="mailto:salmarowaie@gmail.com"
-                className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-              >
-                Get in Touch
-              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -85,29 +79,24 @@ export const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-40 bg-background pt-20 px-6 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center md:hidden"
           >
-            <div className="space-y-1">
-              {navLinks.map((link) => (
-                <button
+            <div className="space-y-8 text-center">
+              {navLinks.map((link, i) => (
+                <motion.button
                   key={link.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.href)}
-                  className="block w-full text-left py-3 text-lg font-medium text-foreground border-b border-border"
+                  className="block text-2xl text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {link.label}
-                </button>
+                </motion.button>
               ))}
-              <div className="pt-6 flex gap-4">
-                <a href="mailto:salmarowaie@gmail.com" className="p-2 text-muted-foreground hover:text-primary">
-                  <Mail className="h-5 w-5" />
-                </a>
-                <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="p-2 text-muted-foreground hover:text-primary">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
             </div>
           </motion.div>
         )}
