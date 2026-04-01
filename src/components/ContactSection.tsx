@@ -1,76 +1,72 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, FileText, MapPin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl"
-        >
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Let's Connect</h2>
-          <p className="text-muted-foreground leading-relaxed mb-10">
-            I'm open to opportunities in mechanical design, product development, and R&D engineering. Feel free to reach out.
-          </p>
+    <section id="contact" className="py-32">
+      <div className="mx-auto max-w-7xl px-8 md:px-12">
+        <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-24">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="editorial-number text-5xl">05.</span>
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-3">Contact</p>
+          </motion.div>
 
-          <div className="space-y-4">
-            <a
-              href="mailto:salmarowaie@gmail.com"
-              className="flex items-center gap-4 p-4 rounded-xl border border-border bg-background hover:border-primary/30 transition-colors group"
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-2xl"
+          >
+            <h2
+              className="text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.15] mb-8"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Mail className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">Email</p>
-                <p className="text-sm text-muted-foreground">salmarowaie@gmail.com</p>
-              </div>
-            </a>
+              Let's build something
+              <br />
+              <em>together</em>
+            </h2>
 
-            <a
-              href="https://www.linkedin.com/in/salma-alrowaie/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 rounded-xl border border-border bg-background hover:border-primary/30 transition-colors group"
-            >
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Linkedin className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">LinkedIn</p>
-                <p className="text-sm text-muted-foreground">linkedin.com/in/salma-alrowaie</p>
-              </div>
-            </a>
+            <p className="text-muted-foreground text-[15px] leading-[1.8] mb-14 max-w-lg">
+              Open to opportunities in mechanical design, product development, and R&D engineering. Feel free to reach out.
+            </p>
 
-            <a
-              href="#"
-              className="flex items-center gap-4 p-4 rounded-xl border border-border bg-background hover:border-primary/30 transition-colors group"
-            >
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <FileText className="h-5 w-5 text-primary" />
+            <div className="space-y-8">
+              <div className="border-t border-border pt-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Email</p>
+                <a href="mailto:salmarowaie@gmail.com" className="text-foreground hover:text-muted-foreground transition-colors text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  salmarowaie@gmail.com
+                </a>
               </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">Resume</p>
-                <p className="text-sm text-muted-foreground">Download PDF</p>
-              </div>
-            </a>
 
-            <div className="flex items-center gap-4 p-4 rounded-xl border border-border bg-background">
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-primary" />
+              <div className="border-t border-border pt-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">LinkedIn</p>
+                <a
+                  href="https://www.linkedin.com/in/salma-alrowaie/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-muted-foreground transition-colors text-lg"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  linkedin.com/in/salma-alrowaie
+                </a>
               </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">Location</p>
-                <p className="text-sm text-muted-foreground">KAUST, Saudi Arabia</p>
+
+              <div className="border-t border-border pt-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Location</p>
+                <p className="text-foreground text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  KAUST, Saudi Arabia
+                </p>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

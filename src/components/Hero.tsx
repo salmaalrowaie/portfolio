@@ -1,112 +1,84 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Linkedin, Mail, FileText } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-16">
-      <div className="mx-auto max-w-6xl px-6 w-full">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
-          {/* Text content */}
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-primary font-medium text-sm tracking-wide uppercase mb-4"
-            >
-              Mechanical Engineer
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-[1.05]"
-            >
-              Salma Alrowaie
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl"
-            >
-              Mechanical engineer focused on design, manufacturing, analysis, prototyping, and engineering problem-solving.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-8 flex flex-wrap gap-3"
-            >
-              <button
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
-              >
-                View Projects
-              </button>
-              <a
-                href="#"
-                className="px-6 py-3 border border-border text-foreground rounded-lg font-medium text-sm hover:bg-secondary transition-colors"
-              >
-                Download Resume
-              </a>
-              <button
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-6 py-3 border border-border text-foreground rounded-lg font-medium text-sm hover:bg-secondary transition-colors"
-              >
-                Contact Me
-              </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 flex items-center gap-4"
-            >
-              <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="mailto:salmarowaie@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <FileText className="h-5 w-5" />
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Profile image placeholder */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:block"
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="mx-auto max-w-7xl px-8 md:px-12 w-full">
+        <div className="flex flex-col items-center text-center">
+          {/* Subtle label */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8"
           >
-            <div className="w-72 h-80 rounded-2xl bg-secondary border border-border flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">Profile Photo</span>
-            </div>
+            Mechanical Engineer
+          </motion.p>
+
+          {/* Large editorial name */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-foreground leading-[0.95] mb-8"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Salma
+            <br />
+            <em className="font-normal">Alrowaie</em>
+          </motion.h1>
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="text-muted-foreground text-sm sm:text-base max-w-md leading-relaxed mb-12"
+          >
+            Design, analysis, prototyping, and manufacturing — 
+            turning engineering challenges into tangible solutions.
+          </motion.p>
+
+          {/* Minimal CTAs */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.1 }}
+            className="flex items-center gap-8"
+          >
+            <button
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-xs uppercase tracking-[0.2em] text-foreground border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-300"
+            >
+              View Work
+            </button>
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
+              Get in Touch
+            </button>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <button
-            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <ArrowDown className="h-5 w-5 animate-bounce" />
-          </button>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
+        <div className="w-px h-12 bg-border relative overflow-hidden">
+          <motion.div
+            className="w-full bg-foreground absolute top-0"
+            animate={{ height: ["0%", "100%"], top: ["0%", "0%"] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ height: "30%" }}
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };
