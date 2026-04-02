@@ -1,64 +1,72 @@
 import { motion } from "framer-motion";
 
+const contactItems = [
+  { label: "EMAIL", value: "SALMAROWAIE@GMAIL.COM", href: "mailto:salmarowaie@gmail.com" },
+  { label: "LINKEDIN", value: "SALMA-ALROWAIE", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true },
+  { label: "LOCATION", value: "KAUST, SAUDI ARABIA" },
+  { label: "RESUME", value: "DOWNLOAD PDF", href: "#" },
+];
+
 export const ContactSection = () => {
   return (
     <section id="contact" className="py-24">
       <div className="px-6 md:px-10">
         <div className="grid lg:grid-cols-[300px_1fr] gap-12">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="bracket-label text-muted-foreground">[ CONTACT ]</p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-2xl"
-          >
-            <h2 className="text-3xl md:text-4xl text-foreground mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="text-3xl md:text-4xl text-foreground mb-6"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
               LET'S CONNECT
-            </h2>
+            </motion.h2>
 
-            <p className="text-muted-foreground leading-[1.8] mb-12" style={{ fontSize: "13px" }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-muted-foreground leading-[1.8] mb-12"
+              style={{ fontSize: "13px" }}
+            >
               Open to opportunities in mechanical design, product development, and R&D engineering. Feel free to reach out.
-            </p>
+            </motion.p>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              <a
-                href="mailto:salmarowaie@gmail.com"
-                className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200 group"
-              >
-                <span className="tech-label opacity-50 mb-2">EMAIL</span>
-                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>SALMAROWAIE@GMAIL.COM</span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/salma-alrowaie/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200"
-              >
-                <span className="tech-label opacity-50 mb-2">LINKEDIN</span>
-                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>SALMA-ALROWAIE</span>
-              </a>
-
-              <div className="info-box flex flex-col">
-                <span className="tech-label text-muted-foreground mb-2">LOCATION</span>
-                <span className="tech-label text-foreground" style={{ fontSize: "12px" }}>KAUST, SAUDI ARABIA</span>
-              </div>
-
-              <a href="#" className="info-box flex flex-col hover:bg-foreground hover:text-background transition-colors duration-200">
-                <span className="tech-label opacity-50 mb-2">RESUME</span>
-                <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>DOWNLOAD PDF</span>
-              </a>
+              {contactItems.map((item, i) => {
+                const Tag = item.href ? motion.a : motion.div;
+                return (
+                  <Tag
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={item.href ? { scale: 1.03 } : undefined}
+                    whileTap={item.href ? { scale: 0.98 } : undefined}
+                    {...(item.href ? { href: item.href } : {})}
+                    {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className={`info-box flex flex-col ${item.href ? "hover:bg-foreground hover:text-background transition-colors duration-200 group" : ""}`}
+                  >
+                    <span className="tech-label opacity-50 mb-2">{item.label}</span>
+                    <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>{item.value}</span>
+                  </Tag>
+                );
+              })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

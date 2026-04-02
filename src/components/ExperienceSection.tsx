@@ -7,10 +7,10 @@ export const ExperienceSection = () => {
       <div className="px-6 md:px-10">
         <div className="grid lg:grid-cols-[300px_1fr] gap-12">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="bracket-label text-muted-foreground">[ EXPERIENCE ]</p>
           </motion.div>
@@ -19,11 +19,11 @@ export const ExperienceSection = () => {
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.organization + exp.role}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="border-t border-foreground py-8 grid md:grid-cols-[180px_1fr] gap-4 md:gap-8"
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="border-t border-foreground py-8 grid md:grid-cols-[180px_1fr] gap-4 md:gap-8 group hover:bg-foreground/[0.03] transition-colors duration-300"
               >
                 <p className="tech-label text-muted-foreground">{exp.dates.toUpperCase()}</p>
                 <div>
@@ -33,10 +33,18 @@ export const ExperienceSection = () => {
                   <p className="tech-label text-muted-foreground mb-4">{exp.organization.toUpperCase()}</p>
                   <ul className="space-y-2">
                     {exp.bullets.map((bullet, j) => (
-                      <li key={j} className="text-muted-foreground leading-[1.7] flex gap-3" style={{ fontSize: "13px" }}>
+                      <motion.li
+                        key={j}
+                        initial={{ opacity: 0, x: 10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + j * 0.05 }}
+                        className="text-muted-foreground leading-[1.7] flex gap-3"
+                        style={{ fontSize: "13px" }}
+                      >
                         <span className="text-foreground shrink-0">—</span>
                         {bullet}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>

@@ -7,10 +7,10 @@ export const SkillsSection = () => {
       <div className="px-6 md:px-10">
         <div className="grid lg:grid-cols-[300px_1fr] gap-12">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="bracket-label text-muted-foreground">[ CORE THREADS OF MY WORK ]</p>
           </motion.div>
@@ -19,10 +19,10 @@ export const SkillsSection = () => {
             {skillCategories.map((category, i) => (
               <motion.div
                 key={category.category}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="border-t border-foreground py-6 grid md:grid-cols-[200px_1fr] gap-4 md:gap-8"
               >
                 <div className="flex items-baseline gap-3">
@@ -33,13 +33,18 @@ export const SkillsSection = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {category.items.map((item) => (
-                    <span
+                  {category.items.map((item, j) => (
+                    <motion.span
                       key={item}
-                      className="tech-label px-3 py-1.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 cursor-default"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 + j * 0.03, duration: 0.3 }}
+                      whileHover={{ scale: 1.1, backgroundColor: "hsl(0 0% 0%)", color: "hsl(0 0% 100%)" }}
+                      className="tech-label px-3 py-1.5 border border-foreground text-foreground transition-colors duration-200 cursor-default"
                     >
                       {item.toUpperCase()}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
