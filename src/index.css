@@ -36,6 +36,12 @@
 
     --radius: 0px;
 
+    --eng-purple: 253 60% 28%;
+    --eng-magenta: 330 70% 40%;
+    --eng-pink: 345 100% 55%;
+    --eng-orange: 25 100% 52%;
+    --eng-yellow: 45 100% 52%;
+
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 0%;
     --sidebar-primary: 0 0% 0%;
