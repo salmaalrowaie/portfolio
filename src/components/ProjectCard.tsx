@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+const accentColors = [
+  "hsl(var(--eng-orange))",
+  "hsl(var(--eng-magenta))",
+  "hsl(var(--eng-purple))",
+  "hsl(var(--eng-pink))",
+  "hsl(var(--eng-yellow))",
+];
+
 interface ProjectCardProps {
   project: Project;
   index: number;
@@ -12,6 +20,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const navigate = useNavigate();
   const num = String(index + 1).padStart(2, "0");
   const ref = useRef<HTMLDivElement>(null);
+  const accent = accentColors[index % accentColors.length];
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -41,8 +50,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, perspective: 1000 }}
-      className="group cursor-pointer border border-foreground hover:bg-foreground hover:text-background transition-colors duration-300 will-change-transform"
+      className="group cursor-pointer border border-foreground hover:bg-foreground hover:text-background transition-colors duration-300 will-change-transform relative overflow-hidden"
     >
+      {/* Colored left accent bar */}
+      <div className="absolute top-0 left-0 w-1 h-full z-10 transition-all duration-300 group-hover:w-2" style={{ backgroundColor: accent }} />
+
       <div className="grid md:grid-cols-[1fr_1fr]">
         {/* Image */}
         <div className="aspect-[4/3] bg-muted overflow-hidden border-b md:border-b-0 md:border-r border-foreground relative">
@@ -53,18 +65,22 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             whileHover={{ scale: 1.08 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           />
-          {/* Animated overlay on hover */}
-          <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+          {/* Colored overlay on hover */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+            style={{ backgroundColor: accent }}
+          />
         </div>
 
         {/* Content */}
-        <div className="p-8 flex flex-col justify-between">
+        <div className="p-8 flex flex-col justify-between pl-10">
           <div>
             <div className="flex items-baseline justify-between mb-6">
               <motion.span
-                className="tech-label text-inherit opacity-40"
+                className="tech-label opacity-60"
+                style={{ color: accent }}
                 initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 0.4, x: 0 }}
+                whileInView={{ opacity: 0.8, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + index * 0.1 }}
               >
@@ -108,7 +124,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              [ VIEW PROJECT → ]
+              [ VIEW PROJECT <span style={{ color: accent }}>→</span> ]
             </motion.span>
           </div>
         </div>

@@ -14,10 +14,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Scroll progress bar */}
+      {/* Scroll progress bar — gradient */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-foreground z-[60] origin-left"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
+        style={{
+          scaleX,
+          background: "linear-gradient(90deg, hsl(var(--eng-purple)), hsl(var(--eng-magenta)), hsl(var(--eng-pink)), hsl(var(--eng-orange)), hsl(var(--eng-yellow)))",
+        }}
       />
 
       <Navbar />
@@ -34,7 +37,7 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="bracket-label text-muted-foreground">[ SELECTED WORK ]</p>
+              <p className="bracket-label text-eng-orange">[ SELECTED WORK ]</p>
             </motion.div>
 
             <motion.div
@@ -47,7 +50,7 @@ const Index = () => {
                 className="text-3xl md:text-4xl text-foreground mb-3"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                FEATURED PROJECTS
+                FEATURED <span className="text-eng-orange">PROJECTS</span>
               </h2>
               <p className="tech-label text-muted-foreground">
                 CLICK ANY PROJECT FOR THE FULL CASE STUDY
@@ -79,10 +82,10 @@ const Index = () => {
             © {new Date().getFullYear()} SALMA ALROWAIE
           </span>
           <div className="flex gap-6">
-            <a href="mailto:salmarowaie@gmail.com" className="tech-label text-muted-foreground hover:text-foreground transition-colors">
+            <a href="mailto:salmarowaie@gmail.com" className="tech-label text-muted-foreground hover:text-eng-orange transition-colors">
               EMAIL
             </a>
-            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="tech-label text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="tech-label text-muted-foreground hover:text-eng-purple transition-colors">
               LINKEDIN
             </a>
           </div>
