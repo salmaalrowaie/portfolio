@@ -9,10 +9,10 @@ const fadeUp = {
 };
 
 const highlights = [
-  { label: "Education", value: "MS KAUST · BS Purdue" },
-  { label: "Focus", value: "Design & Manufacturing" },
-  { label: "Seeking", value: "Mech Design / R&D Roles" },
-  { label: "Location", value: "KAUST, Saudi Arabia" },
+  { label: "Education", value: "MS KAUST · BS Purdue", color: "border-l-eng-blue" },
+  { label: "Focus", value: "Design & Manufacturing", color: "border-l-eng-orange" },
+  { label: "Seeking", value: "Mech Design / R&D Roles", color: "border-l-eng-magenta" },
+  { label: "Location", value: "KAUST, Saudi Arabia", color: "border-l-eng-blue" },
 ];
 
 export const AboutSection = () => {
@@ -35,13 +35,13 @@ export const AboutSection = () => {
             {/* Left — text */}
             <div className="space-y-4 text-muted-foreground text-[14px] leading-[1.75]">
               {[
-                "Mechanical engineer currently pursuing a Master's in Technology, Innovation & Entrepreneurship at KAUST, sponsored through the KGSP program.",
-                "I hold a Bachelor's in Mechanical Engineering from Purdue University, with strong foundations in design, analysis, manufacturing, and systems thinking.",
+                <>Mechanical engineer currently pursuing a Master's in Technology, Innovation & Entrepreneurship at <span className="text-eng-blue font-medium">KAUST</span>, sponsored through the KGSP program.</>,
+                <>I hold a Bachelor's in Mechanical Engineering from <span className="text-eng-magenta font-medium">Purdue University</span>, with strong foundations in design, analysis, manufacturing, and systems thinking.</>,
                 "My work spans product design, mechanical systems, CAD/FEA/CFD analysis, prototyping, and taking projects from concept through manufacturing.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
-                  custom={0.05 + i * 0.08}
+                  custom={0.05 + i * 0.1}
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="visible"
@@ -62,7 +62,7 @@ export const AboutSection = () => {
               className="border border-border divide-y divide-border"
             >
               {highlights.map(h => (
-                <div key={h.label} className="px-5 py-3.5">
+                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color}`}>
                   <p className="section-label mb-0.5">{h.label}</p>
                   <p className="text-foreground text-sm font-medium">{h.value}</p>
                 </div>

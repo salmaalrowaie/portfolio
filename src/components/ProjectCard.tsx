@@ -7,18 +7,25 @@ interface ProjectCardProps {
   index: number;
 }
 
+const accentColors = [
+  { border: "group-hover:border-eng-orange", text: "group-hover:text-eng-orange", bg: "group-hover:bg-eng-orange/5", num: "text-eng-orange" },
+  { border: "group-hover:border-eng-magenta", text: "group-hover:text-eng-magenta", bg: "group-hover:bg-eng-magenta/5", num: "text-eng-magenta" },
+  { border: "group-hover:border-eng-blue", text: "group-hover:text-eng-blue", bg: "group-hover:bg-eng-blue/5", num: "text-eng-blue" },
+];
+
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const navigate = useNavigate();
   const num = String(index + 1).padStart(2, "0");
+  const accent = accentColors[index % 3];
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] as const }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as const }}
       onClick={() => navigate(`/project/${project.id}`)}
-      className="group cursor-pointer border border-border hover:border-foreground transition-colors duration-300"
+      className={`group cursor-pointer border border-border ${accent.border} ${accent.bg} transition-all duration-300`}
     >
       <div className="grid md:grid-cols-[2fr_3fr]">
         {/* Image */}
@@ -26,7 +33,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+            className="h-full w-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
           />
         </div>
 
@@ -34,11 +41,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
         <div className="p-6 lg:p-8 flex flex-col justify-between">
           <div>
             <div className="flex items-baseline justify-between mb-4">
-              <span className="section-label text-eng-orange">{num}</span>
+              <span className={`section-label ${accent.num} font-bold`}>{num}</span>
               <span className="section-label">{project.semester} {project.year}</span>
             </div>
 
-            <h3 className="text-xl lg:text-2xl text-foreground mb-3 leading-tight font-bold tracking-tight">
+            <h3 className={`text-xl lg:text-2xl text-foreground mb-3 leading-tight font-bold tracking-tight ${accent.text} transition-colors duration-300`}>
               {project.title}
             </h3>
 
@@ -58,9 +65,12 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               ))}
             </div>
 
-            <span className="tech-label text-muted-foreground group-hover:text-eng-orange transition-colors whitespace-nowrap ml-4">
+            <motion.span
+              className={`tech-label text-muted-foreground ${accent.text} transition-colors whitespace-nowrap ml-4`}
+              whileHover={{ x: 4 }}
+            >
               View →
-            </span>
+            </motion.span>
           </div>
         </div>
       </div>
