@@ -6,59 +6,43 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ContactSection } from "@/components/ContactSection";
 import { projects } from "@/data/projects";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Index = () => {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Scroll progress bar — gradient */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
-        style={{
-          scaleX,
-          background: "linear-gradient(90deg, hsl(var(--eng-purple)), hsl(var(--eng-magenta)), hsl(var(--eng-pink)), hsl(var(--eng-orange)), hsl(var(--eng-yellow)))",
-        }}
-      />
-
       <Navbar />
       <Hero />
       <AboutSection />
 
-      {/* Featured Projects */}
-      <section id="projects" className="py-24 border-b border-foreground">
-        <div className="px-6 md:px-10">
-          <div className="grid lg:grid-cols-[300px_1fr] gap-12 mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+      {/* Projects */}
+      <section id="projects" className="py-16 border-b border-border bg-grid-subtle">
+        <div className="px-6 md:px-10 lg:px-16">
+          <div className="grid lg:grid-cols-[200px_1fr] gap-8 mb-10">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="section-label text-eng-orange pt-1"
             >
-              <p className="bracket-label text-eng-orange">[ SELECTED WORK ]</p>
-            </motion.div>
+              Selected Work
+            </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2
-                className="text-3xl md:text-4xl text-foreground mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            <div>
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-2xl md:text-3xl text-foreground mb-2 tracking-tight"
               >
-                FEATURED <span className="text-eng-orange">PROJECTS</span>
-              </h2>
-              <p className="tech-label text-muted-foreground">
-                CLICK ANY PROJECT FOR THE FULL CASE STUDY
-              </p>
-            </motion.div>
+                Featured Projects
+              </motion.h2>
+              <p className="section-label">Click any project for the full case study</p>
+            </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 lg:ml-[232px]">
             {projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
@@ -71,26 +55,19 @@ const Index = () => {
       <ContactSection />
 
       {/* Footer */}
-      <motion.footer
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="border-t border-foreground py-6"
-      >
-        <div className="px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="tech-label text-muted-foreground">
-            © {new Date().getFullYear()} SALMA ALROWAIE
-          </span>
+      <footer className="border-t border-border py-5">
+        <div className="px-6 md:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <span className="section-label">© {new Date().getFullYear()} Salma Alrowaie</span>
           <div className="flex gap-6">
-            <a href="mailto:salmarowaie@gmail.com" className="tech-label text-muted-foreground hover:text-eng-orange transition-colors">
-              EMAIL
+            <a href="mailto:salmarowaie@gmail.com" className="section-label hover:text-eng-orange transition-colors">
+              Email
             </a>
-            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="tech-label text-muted-foreground hover:text-eng-purple transition-colors">
-              LINKEDIN
+            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="section-label hover:text-eng-blue transition-colors">
+              LinkedIn
             </a>
           </div>
         </div>
-      </motion.footer>
+      </footer>
     </div>
   );
 };
