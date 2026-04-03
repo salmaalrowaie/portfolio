@@ -16,7 +16,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] as const }}
       onClick={() => navigate(`/project/${project.id}`)}
       className="group cursor-pointer border border-border hover:border-foreground transition-colors duration-300"
     >
