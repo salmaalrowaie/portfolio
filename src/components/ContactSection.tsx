@@ -1,18 +1,10 @@
 import { motion } from "framer-motion";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (d: number) => ({
-    opacity: 1, y: 0,
-    transition: { delay: d, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
 const contactItems = [
-  { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com" },
-  { label: "LinkedIn", value: "salma-alrowaie", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true },
-  { label: "Location", value: "KAUST, Saudi Arabia" },
-  { label: "Resume", value: "Download PDF", href: "#" },
+  { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com", color: "hover:border-l-eng-orange" },
+  { label: "LinkedIn", value: "salma-alrowaie", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true, color: "hover:border-l-eng-blue" },
+  { label: "Location", value: "KAUST, Saudi Arabia", color: "hover:border-l-eng-magenta" },
+  { label: "Resume", value: "Download PDF", href: "#", color: "hover:border-l-eng-orange" },
 ];
 
 export const ContactSection = () => {
@@ -21,10 +13,8 @@ export const ContactSection = () => {
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
           <motion.p
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="section-label text-eng-blue pt-1"
           >
@@ -33,33 +23,30 @@ export const ContactSection = () => {
 
           <div>
             <motion.h2
-              custom={0.05}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
               className="text-2xl md:text-3xl text-foreground mb-3 tracking-tight"
             >
-              Let's Connect
+              Let's <span className="text-eng-orange">Connect</span>
             </motion.h2>
 
             <motion.p
-              custom={0.1}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5 }}
               className="text-muted-foreground text-sm mb-8 max-w-md"
             >
               Open to opportunities in mechanical design, product development, and R&D engineering.
             </motion.p>
 
             <motion.div
-              custom={0.15}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.5 }}
               className="grid sm:grid-cols-2 gap-px bg-border border border-border max-w-lg"
             >
               {contactItems.map(item => {
@@ -69,7 +56,7 @@ export const ContactSection = () => {
                     key={item.label}
                     {...(item.href ? { href: item.href } : {})}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={`bg-background px-5 py-4 ${item.href ? "hover:bg-secondary transition-colors duration-200" : ""}`}
+                    className={`bg-background px-5 py-4 border-l-2 border-l-transparent ${item.color} transition-all duration-200 ${item.href ? "hover:bg-secondary cursor-pointer" : ""}`}
                   >
                     <p className="section-label mb-1">{item.label}</p>
                     <p className="text-foreground text-sm font-medium">{item.value}</p>

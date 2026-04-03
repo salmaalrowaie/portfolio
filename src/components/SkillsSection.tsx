@@ -1,13 +1,20 @@
 import { motion } from "framer-motion";
 import { skillCategories } from "@/data/experience";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: (d: number) => ({
-    opacity: 1, y: 0,
-    transition: { delay: d, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+const categoryColors = [
+  "hover:border-l-eng-orange",
+  "hover:border-l-eng-magenta",
+  "hover:border-l-eng-blue",
+  "hover:border-l-eng-orange",
+  "hover:border-l-eng-magenta",
+  "hover:border-l-eng-blue",
+];
+
+const pillColors = [
+  "hover:bg-eng-orange hover:text-background hover:border-eng-orange",
+  "hover:bg-eng-magenta hover:text-background hover:border-eng-magenta",
+  "hover:bg-eng-blue hover:text-background hover:border-eng-blue",
+];
 
 export const SkillsSection = () => {
   return (
@@ -15,10 +22,8 @@ export const SkillsSection = () => {
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
           <motion.p
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="section-label text-eng-blue pt-1"
           >
@@ -29,15 +34,16 @@ export const SkillsSection = () => {
             {skillCategories.map((category, i) => (
               <motion.div
                 key={category.category}
-                custom={0.05 + i * 0.08}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-background p-5"
+                transition={{ delay: 0.05 + i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className={`bg-background p-5 border-l-2 border-l-transparent ${categoryColors[i % 6]} transition-colors duration-300`}
               >
                 <p className="text-foreground text-sm font-semibold mb-3">
-                  <span className="text-muted-foreground font-normal mr-1.5">{String(i + 1).padStart(2, "0")}</span>
+                  <span className={`font-bold mr-1.5 ${i % 3 === 0 ? "text-eng-orange" : i % 3 === 1 ? "text-eng-magenta" : "text-eng-blue"}`}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {category.category}
                 </p>
 
@@ -45,7 +51,7 @@ export const SkillsSection = () => {
                   {category.items.map(item => (
                     <span
                       key={item}
-                      className="tech-label px-2 py-1 border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors duration-200"
+                      className={`tech-label px-2 py-1 border border-border text-muted-foreground ${pillColors[i % 3]} transition-colors duration-200 cursor-default`}
                     >
                       {item}
                     </span>

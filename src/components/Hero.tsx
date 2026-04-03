@@ -1,4 +1,32 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+const charVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.3 + i * 0.03, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+const AnimatedText = ({ text, className }: { text: string; className?: string }) => (
+  <span className={className}>
+    {text.split("").map((char, i) => (
+      <motion.span
+        key={i}
+        custom={i}
+        variants={charVariants}
+        initial="hidden"
+        animate="visible"
+        className="inline-block"
+        style={{ whiteSpace: char === " " ? "pre" : undefined }}
+      >
+        {char}
+      </motion.span>
+    ))}
+  </span>
+);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -10,18 +38,22 @@ const fadeUp = {
 };
 
 const specialties = [
-  { label: "Product Design & CAD", desc: "SolidWorks, CATIA, Fusion 360" },
-  { label: "Analysis & Simulation", desc: "FEA, CFD, Thermal, ANSYS" },
-  { label: "Prototyping & Manufacturing", desc: "CNC, 3D Printing, Laser Cutting" },
+  { label: "Product Design & CAD", desc: "SolidWorks, CATIA, Fusion 360", color: "text-eng-orange" },
+  { label: "Analysis & Simulation", desc: "FEA, CFD, Thermal, ANSYS", color: "text-eng-magenta" },
+  { label: "Prototyping & Manufacturing", desc: "CNC, 3D Printing, Laser Cutting", color: "text-eng-blue" },
 ];
 
 export const Hero = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center bg-construction-lines">
+    <section ref={ref} className="relative min-h-[90vh] flex flex-col justify-center bg-construction-lines overflow-hidden">
       <div className="px-6 md:px-10 lg:px-16 py-16">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-start">
           {/* Left — Headline */}
-          <div>
+          <motion.div style={{ y: headlineY }}>
             <motion.p
               custom={0.1}
               variants={fadeUp}
@@ -32,29 +64,25 @@ export const Hero = () => {
               Mechanical Engineer
             </motion.p>
 
-            <motion.h1
-              custom={0.2}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-foreground mb-8"
-            >
-              Salma<br />
-              <span className="text-eng-orange">Alrowaie</span>
-            </motion.h1>
+            <h1 className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-foreground mb-8">
+              <AnimatedText text="Salma" />
+              <br />
+              <AnimatedText text="Alrowaie" className="text-eng-orange" />
+            </h1>
 
             <motion.p
-              custom={0.35}
+              custom={0.6}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
               className="text-muted-foreground max-w-md leading-relaxed text-[15px]"
             >
-              Mechanical engineer focused on design, analysis, prototyping, and product development. Currently pursuing an MS in Technology, Innovation & Entrepreneurship at KAUST.
+              Mechanical engineer focused on design, analysis, prototyping, and product development. Currently pursuing an MS in Technology, Innovation & Entrepreneurship at{" "}
+              <span className="text-eng-blue font-medium">KAUST</span>.
             </motion.p>
 
             <motion.div
-              custom={0.5}
+              custom={0.75}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
@@ -62,7 +90,7 @@ export const Hero = () => {
             >
               <a
                 href="mailto:salmarowaie@gmail.com"
-                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
+                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-eng-orange hover:border-eng-orange hover:text-background transition-colors duration-200"
               >
                 Email
               </a>
@@ -70,18 +98,18 @@ export const Hero = () => {
                 href="https://www.linkedin.com/in/salma-alrowaie/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
+                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-eng-blue hover:border-eng-blue hover:text-background transition-colors duration-200"
               >
                 LinkedIn
               </a>
               <button
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="tech-label px-5 py-2.5 bg-eng-orange text-white border border-eng-orange hover:bg-transparent hover:text-foreground transition-colors duration-200"
+                className="tech-label px-5 py-2.5 bg-eng-orange text-background border border-eng-orange hover:bg-transparent hover:text-foreground transition-colors duration-200"
               >
                 View Work
               </button>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Right — Summary card */}
           <motion.div
@@ -94,12 +122,12 @@ export const Hero = () => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="section-label mb-1">Education</p>
-                <p className="text-foreground text-sm font-medium">MS — KAUST</p>
+                <p className="text-foreground text-sm font-medium">MS — <span className="text-eng-blue">KAUST</span></p>
                 <p className="text-muted-foreground text-xs">Technology & Innovation</p>
               </div>
               <div>
                 <p className="section-label mb-1">Undergraduate</p>
-                <p className="text-foreground text-sm font-medium">BS — Purdue</p>
+                <p className="text-foreground text-sm font-medium">BS — <span className="text-eng-magenta">Purdue</span></p>
                 <p className="text-muted-foreground text-xs">Mechanical Engineering</p>
               </div>
             </div>
@@ -109,11 +137,14 @@ export const Hero = () => {
             <div>
               <p className="section-label mb-2">Focus Areas</p>
               <div className="flex flex-wrap gap-1.5">
-                {["Product Design", "FEA/CFD", "Prototyping", "DFM", "Systems Design", "R&D"].map(tag => (
-                  <span key={tag} className="tech-label px-2.5 py-1 border border-border text-muted-foreground">
-                    {tag}
-                  </span>
-                ))}
+                {["Product Design", "FEA/CFD", "Prototyping", "DFM", "Systems Design", "R&D"].map((tag, i) => {
+                  const colors = ["border-eng-orange/40 text-eng-orange", "border-eng-magenta/40 text-eng-magenta", "border-eng-blue/40 text-eng-blue"];
+                  return (
+                    <span key={tag} className={`tech-label px-2.5 py-1 border ${colors[i % 3]} hover:bg-foreground hover:text-background hover:border-foreground transition-colors duration-200`}>
+                      {tag}
+                    </span>
+                  );
+                })}
               </div>
             </div>
 
@@ -130,7 +161,7 @@ export const Hero = () => {
 
         {/* Specialties bar */}
         <motion.div
-          custom={0.6}
+          custom={0.85}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -139,7 +170,7 @@ export const Hero = () => {
           {specialties.map((s, i) => (
             <div key={s.label} className="bg-background p-5 group hover:bg-secondary transition-colors duration-200">
               <p className="text-foreground text-sm font-semibold mb-1">
-                <span className="text-muted-foreground font-normal mr-2">{String(i + 1).padStart(2, "0")}</span>
+                <span className={`${s.color} font-bold mr-2`}>{String(i + 1).padStart(2, "0")}</span>
                 {s.label}
               </p>
               <p className="text-muted-foreground text-xs">{s.desc}</p>
@@ -149,10 +180,15 @@ export const Hero = () => {
       </div>
 
       {/* Bottom divider */}
-      <div className="border-t border-border px-6 md:px-10 lg:px-16 py-3 flex items-center justify-between">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="border-t border-border px-6 md:px-10 lg:px-16 py-3 flex items-center justify-between"
+      >
         <span className="section-label text-eng-orange">↓ Scroll</span>
         <span className="section-label">KAUST, Saudi Arabia</span>
-      </div>
+      </motion.div>
     </section>
   );
 };

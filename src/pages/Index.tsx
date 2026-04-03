@@ -6,11 +6,20 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ContactSection } from "@/components/ContactSection";
 import { projects } from "@/data/projects";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const Index = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Scroll progress */}
+      <motion.div
+        style={{ scaleX, transformOrigin: "left" }}
+        className="fixed top-0 left-0 right-0 h-[2px] bg-eng-orange z-[60]"
+      />
+
       <Navbar />
       <Hero />
       <AboutSection />
@@ -36,7 +45,7 @@ const Index = () => {
                 transition={{ duration: 0.5 }}
                 className="text-2xl md:text-3xl text-foreground mb-2 tracking-tight"
               >
-                Featured Projects
+                Featured <span className="text-eng-orange">Projects</span>
               </motion.h2>
               <p className="section-label">Click any project for the full case study</p>
             </div>
