@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -13,18 +13,7 @@ const navLinks = [
 
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [time, setTime] = useState("");
   const location = useLocation();
-
-  useEffect(() => {
-    const tick = () => {
-      const now = new Date();
-      setTime(now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }).toUpperCase());
-    };
-    tick();
-    const interval = setInterval(tick, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
@@ -38,25 +27,23 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-foreground">
-        <div className="px-6 md:px-10">
+      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="px-6 md:px-10 lg:px-16">
           <div className="flex h-12 items-center justify-between">
-            <Link to="/" className="tech-label text-foreground tracking-widest">
-              SALMA ALROWAIE
+            <Link to="/" className="text-foreground text-sm font-semibold tracking-tight">
+              Salma Alrowaie
             </Link>
 
-            {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
+            <div className="hidden md:flex items-center gap-7">
+              {navLinks.map(link => (
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
-                  className="tech-label text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="section-label hover:text-foreground transition-colors duration-200"
                 >
                   {link.label}
                 </button>
               ))}
-              <span className="tech-label text-muted-foreground">{time}</span>
             </div>
 
             <button
@@ -86,8 +73,7 @@ export const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.href)}
-                  className="block text-3xl font-bold text-foreground uppercase"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  className="block text-2xl font-bold text-foreground"
                 >
                   {link.label}
                 </motion.button>

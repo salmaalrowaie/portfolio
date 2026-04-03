@@ -7,49 +7,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 0 0% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 0 0% 0%;
+    --primary: 0 0% 8%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 8%;
 
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 0 0% 42%;
 
     --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 0%;
-    --input: 0 0% 85%;
-    --ring: 0 0% 0%;
+    --border: 0 0% 86%;
+    --input: 0 0% 86%;
+    --ring: 0 0% 8%;
 
     --radius: 0px;
 
-    --eng-purple: 253 60% 28%;
-    --eng-magenta: 330 70% 40%;
-    --eng-pink: 345 100% 55%;
-    --eng-orange: 25 100% 52%;
-    --eng-yellow: 45 100% 52%;
+    --eng-orange: 22 100% 55%;
+    --eng-magenta: 330 65% 45%;
+    --eng-blue: 215 70% 45%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 0%;
-    --sidebar-primary: 0 0% 0%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 0 0% 8%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 0% 0%;
-    --sidebar-ring: 0 0% 0%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 86%;
+    --sidebar-ring: 0 0% 8%;
   }
 }
 
@@ -60,17 +58,15 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
     line-height: 1.6;
-    cursor: crosshair;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
-    text-transform: uppercase;
   }
 
   code, .mono {
@@ -78,7 +74,7 @@
   }
 }
 
-/* No scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -86,57 +82,49 @@
   background: hsl(0 0% 100%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(0 0% 0%);
+  background: hsl(0 0% 75%);
 }
 
 /* Selection */
 ::selection {
-  background: hsl(0 0% 0%);
-  color: hsl(0 0% 100%);
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
 }
 
-/* Technical label style */
+/* Technical label */
 .tech-label {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Bordered box like Sutera */
-.info-box {
-  border: 1px solid hsl(0 0% 0%);
-  padding: 16px 20px;
-}
-
-/* Grid line */
-.grid-line {
-  height: 1px;
-  background: hsl(0 0% 0%);
-}
-
-/* Annotation line */
-.annotation-line {
-  background: hsl(0 0% 0%);
-}
-
-/* Bracket label */
-.bracket-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-/* Dashed separator */
-.dashed-sep {
-  border-top: 1px dashed hsl(0 0% 75%);
+/* Section label */
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: hsl(var(--muted-foreground));
 }
 
-/* Cross marker */
-.cross-marker::before {
-  content: '+';
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  color: hsl(0 0% 60%);
+/* Blueprint grid backgrounds */
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-construction-lines {
+  background-image:
+    linear-gradient(90deg, hsl(var(--foreground) / 0.025) 1px, transparent 1px);
+  background-size: 120px 100%;
 }

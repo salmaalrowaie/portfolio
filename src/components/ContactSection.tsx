@@ -1,78 +1,82 @@
 import { motion } from "framer-motion";
-import { CompassDoodle } from "./EngineeringDoodles";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (d: number) => ({
+    opacity: 1, y: 0,
+    transition: { delay: d, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  }),
+};
 
 const contactItems = [
-  { label: "EMAIL", value: "SALMAROWAIE@GMAIL.COM", href: "mailto:salmarowaie@gmail.com", color: "hsl(var(--eng-orange))" },
-  { label: "LINKEDIN", value: "SALMA-ALROWAIE", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true, color: "hsl(var(--eng-purple))" },
-  { label: "LOCATION", value: "KAUST, SAUDI ARABIA", color: "hsl(var(--eng-magenta))" },
-  { label: "RESUME", value: "DOWNLOAD PDF", href: "#", color: "hsl(var(--eng-pink))" },
+  { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com" },
+  { label: "LinkedIn", value: "salma-alrowaie", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true },
+  { label: "Location", value: "KAUST, Saudi Arabia" },
+  { label: "Resume", value: "Download PDF", href: "#" },
 ];
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="absolute top-10 right-12 opacity-15 hidden lg:block">
-        <CompassDoodle size={80} color="hsl(var(--eng-yellow))" />
-      </div>
-
-      <div className="px-6 md:px-10">
-        <div className="grid lg:grid-cols-[300px_1fr] gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+    <section id="contact" className="py-16">
+      <div className="px-6 md:px-10 lg:px-16">
+        <div className="grid lg:grid-cols-[200px_1fr] gap-8">
+          <motion.p
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="section-label text-eng-blue pt-1"
           >
-            <p className="bracket-label text-eng-pink">[ CONTACT ]</p>
-          </motion.div>
+            Contact
+          </motion.p>
 
-          <div className="max-w-2xl">
+          <div>
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              custom={0.05}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl md:text-4xl text-foreground mb-6"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              className="text-2xl md:text-3xl text-foreground mb-3 tracking-tight"
             >
-              LET'S <span className="text-eng-orange">CONNECT</span>
+              Let's Connect
             </motion.h2>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              custom={0.1}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-muted-foreground leading-[1.8] mb-12"
-              style={{ fontSize: "13px" }}
+              className="text-muted-foreground text-sm mb-8 max-w-md"
             >
-              Open to opportunities in mechanical design, product development, and R&D engineering. Feel free to reach out.
+              Open to opportunities in mechanical design, product development, and R&D engineering.
             </motion.p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {contactItems.map((item, i) => {
-                const Tag = item.href ? motion.a : motion.div;
+            <motion.div
+              custom={0.15}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid sm:grid-cols-2 gap-px bg-border border border-border max-w-lg"
+            >
+              {contactItems.map(item => {
+                const Tag = item.href ? "a" : "div";
                 return (
                   <Tag
                     key={item.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={item.href ? { scale: 1.03 } : undefined}
-                    whileTap={item.href ? { scale: 0.98 } : undefined}
                     {...(item.href ? { href: item.href } : {})}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={`info-box flex flex-col relative overflow-hidden ${item.href ? "hover:bg-foreground hover:text-background transition-colors duration-200 group" : ""}`}
+                    className={`bg-background px-5 py-4 ${item.href ? "hover:bg-secondary transition-colors duration-200" : ""}`}
                   >
-                    {/* Colored top stripe */}
-                    <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: item.color }} />
-                    <span className="tech-label opacity-50 mb-2">{item.label}</span>
-                    <span className="tech-label text-inherit" style={{ fontSize: "12px" }}>{item.value}</span>
+                    <p className="section-label mb-1">{item.label}</p>
+                    <p className="text-foreground text-sm font-medium">{item.value}</p>
                   </Tag>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

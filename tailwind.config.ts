@@ -48,11 +48,9 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         eng: {
-          purple: "hsl(var(--eng-purple))",
-          magenta: "hsl(var(--eng-magenta))",
-          pink: "hsl(var(--eng-pink))",
           orange: "hsl(var(--eng-orange))",
-          yellow: "hsl(var(--eng-yellow))",
+          magenta: "hsl(var(--eng-magenta))",
+          blue: "hsl(var(--eng-blue))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

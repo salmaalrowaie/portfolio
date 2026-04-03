@@ -1,211 +1,158 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { GearDoodle, CircuitDoodle, CompassDoodle, DimensionDoodle } from "./EngineeringDoodles";
+import { motion } from "framer-motion";
 
-const letterVariants = {
-  hidden: { y: 100, opacity: 0 },
-  visible: (i: number) => ({
-    y: 0,
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (d: number) => ({
     opacity: 1,
-    transition: {
-      delay: 0.3 + i * 0.03,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
+    y: 0,
+    transition: { delay: d, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
-const AnimatedWord = ({ text, startIndex, colorIndices = [] }: { text: string; startIndex: number; colorIndices?: { index: number; color: string }[] }) => (
-  <span className="inline-block overflow-hidden">
-    {text.split("").map((char, i) => {
-      const colorMatch = colorIndices.find(c => c.index === i);
-      return (
-        <motion.span
-          key={i}
-          custom={startIndex + i}
-          variants={letterVariants}
-          initial="hidden"
-          animate="visible"
-          className="inline-block"
-          style={colorMatch ? { color: colorMatch.color } : undefined}
-        >
-          {char}
-        </motion.span>
-      );
-    })}
-  </span>
-);
+const specialties = [
+  { label: "Product Design & CAD", desc: "SolidWorks, CATIA, Fusion 360" },
+  { label: "Analysis & Simulation", desc: "FEA, CFD, Thermal, ANSYS" },
+  { label: "Prototyping & Manufacturing", desc: "CNC, 3D Printing, Laser Cutting" },
+];
 
 export const Hero = () => {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const headlineY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const infoY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const doodleRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
-
   return (
-    <section ref={ref} className="relative min-h-screen flex flex-col justify-between pt-12 overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute top-0 bottom-0 w-px"
-            style={{ left: `${(i + 1) * 16.66}%`, backgroundColor: i % 2 === 0 ? "hsl(var(--eng-orange) / 0.08)" : "hsl(var(--foreground) / 0.05)" }}
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ delay: 1.2 + i * 0.1, duration: 0.8, ease: "easeOut" }}
-          />
-        ))}
-      </div>
+    <section className="relative min-h-[90vh] flex flex-col justify-center bg-construction-lines">
+      <div className="px-6 md:px-10 lg:px-16 py-16">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-start">
+          {/* Left — Headline */}
+          <div>
+            <motion.p
+              custom={0.1}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="section-label mb-6 text-eng-orange"
+            >
+              Mechanical Engineer
+            </motion.p>
 
-      {/* Floating doodles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div style={{ rotate: doodleRotate }} className="absolute top-20 right-[15%] opacity-30">
-          <GearDoodle size={100} />
-        </motion.div>
-        <div className="absolute bottom-32 left-[8%] opacity-20">
-          <CompassDoodle size={90} />
-        </div>
-        <div className="absolute top-[40%] right-[5%] opacity-15">
-          <CircuitDoodle size={100} />
-        </div>
-        <div className="absolute bottom-48 right-[30%] opacity-20">
-          <DimensionDoodle width={120} />
-        </div>
-      </div>
+            <motion.h1
+              custom={0.2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-foreground mb-8"
+            >
+              Salma<br />
+              <span className="text-eng-orange">Alrowaie</span>
+            </motion.h1>
 
-      {/* Main content */}
-      <div className="flex-1 flex items-center">
-        <div className="w-full px-6 md:px-10">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
-            {/* Left — Big headline with parallax */}
-            <motion.div style={{ y: headlineY, opacity }}>
-              <h1
-                className="text-[12vw] md:text-[8vw] lg:text-[6vw] leading-[0.95] text-foreground"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            <motion.p
+              custom={0.35}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="text-muted-foreground max-w-md leading-relaxed text-[15px]"
+            >
+              Mechanical engineer focused on design, analysis, prototyping, and product development. Currently pursuing an MS in Technology, Innovation & Entrepreneurship at KAUST.
+            </motion.p>
+
+            <motion.div
+              custom={0.5}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="flex gap-3 mt-8"
+            >
+              <a
+                href="mailto:salmarowaie@gmail.com"
+                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
               >
-                <AnimatedWord text="DESIGN," startIndex={0} colorIndices={[{ index: 6, color: "hsl(var(--eng-orange))" }]} />
-                <br />
-                <AnimatedWord text="BY" startIndex={7} />
-                <br />
-                <AnimatedWord
-                  text="ENGINEERING."
-                  startIndex={9}
-                  colorIndices={[{ index: 11, color: "hsl(var(--eng-pink))" }]}
-                />
-              </h1>
-
-              {/* Animated underline — gradient */}
-              <motion.div
-                className="h-[3px] mt-6 origin-left"
-                style={{ background: "linear-gradient(90deg, hsl(var(--eng-purple)), hsl(var(--eng-magenta)), hsl(var(--eng-pink)), hsl(var(--eng-orange)), hsl(var(--eng-yellow)))" }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 1.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </motion.div>
-
-            {/* Right — Info blocks with parallax */}
-            <motion.div style={{ y: infoY, opacity }} className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="info-box group hover:bg-foreground hover:text-background transition-colors duration-300 relative overflow-hidden"
+                Email
+              </a>
+              <a
+                href="https://www.linkedin.com/in/salma-alrowaie/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
               >
-                {/* Colored accent stripe */}
-                <div className="absolute top-0 left-0 w-1 h-full bg-eng-orange" />
-                <div className="pl-4">
-                  <div className="flex items-baseline justify-between mb-3">
-                    <span className="tech-label tracking-widest font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px" }}>
-                      SALMA ALROWAIE
-                    </span>
-                    <motion.span
-                      className="tech-label text-eng-orange"
-                      animate={{ opacity: [0.4, 1, 0.4] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      /25
-                    </motion.span>
-                  </div>
-                  <div className="space-y-1 text-muted-foreground group-hover:text-background/70" style={{ fontFamily: "'Space Mono', monospace", fontSize: "12px" }}>
-                    <p>MECHANICAL ENGINEER</p>
-                    <p>+ MS TECHNOLOGY & INNOVATION <span className="text-eng-magenta">(KAUST)</span></p>
-                    <p>+ BS MECHANICAL ENGINEERING <span className="text-eng-purple">(PURDUE)</span></p>
-                    <p>→ DESIGN · ANALYSIS · PROTOTYPING</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="info-box group hover:bg-foreground hover:text-background transition-colors duration-300"
+                LinkedIn
+              </a>
+              <button
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                className="tech-label px-5 py-2.5 bg-eng-orange text-white border border-eng-orange hover:bg-transparent hover:text-foreground transition-colors duration-200"
               >
-                <p className="text-muted-foreground group-hover:text-background/70" style={{ fontFamily: "'Space Mono', monospace", fontSize: "12px", lineHeight: 1.7 }}>
-                  Where engineering precision meets creative problem-solving. 
-                  This portfolio is a collection of what I design, build, 
-                  and learn along the way.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                className="flex gap-3"
-              >
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="https://www.linkedin.com/in/salma-alrowaie/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="info-box px-4 py-2 tech-label hover:bg-eng-purple hover:text-white hover:border-eng-purple transition-colors duration-200"
-                >
-                  LINKEDIN
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="mailto:salmarowaie@gmail.com"
-                  className="info-box px-4 py-2 tech-label hover:bg-eng-magenta hover:text-white hover:border-eng-magenta transition-colors duration-200"
-                >
-                  EMAIL
-                </motion.a>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                  className="info-box px-4 py-2 tech-label bg-eng-orange text-white border-eng-orange hover:bg-transparent hover:text-foreground hover:border-foreground transition-colors duration-200"
-                >
-                  VIEW WORK
-                </motion.button>
-              </motion.div>
+                View Work
+              </button>
             </motion.div>
           </div>
+
+          {/* Right — Summary card */}
+          <motion.div
+            custom={0.4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="border border-border p-6 lg:p-8 space-y-5"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="section-label mb-1">Education</p>
+                <p className="text-foreground text-sm font-medium">MS — KAUST</p>
+                <p className="text-muted-foreground text-xs">Technology & Innovation</p>
+              </div>
+              <div>
+                <p className="section-label mb-1">Undergraduate</p>
+                <p className="text-foreground text-sm font-medium">BS — Purdue</p>
+                <p className="text-muted-foreground text-xs">Mechanical Engineering</p>
+              </div>
+            </div>
+
+            <div className="h-px bg-border" />
+
+            <div>
+              <p className="section-label mb-2">Focus Areas</p>
+              <div className="flex flex-wrap gap-1.5">
+                {["Product Design", "FEA/CFD", "Prototyping", "DFM", "Systems Design", "R&D"].map(tag => (
+                  <span key={tag} className="tech-label px-2.5 py-1 border border-border text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="h-px bg-border" />
+
+            <div>
+              <p className="section-label mb-2">Tools</p>
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                SolidWorks · CATIA · ANSYS · MATLAB · Python · Fusion 360
+              </p>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Specialties bar */}
+        <motion.div
+          custom={0.6}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-3 gap-px bg-border mt-14 border border-border"
+        >
+          {specialties.map((s, i) => (
+            <div key={s.label} className="bg-background p-5 group hover:bg-secondary transition-colors duration-200">
+              <p className="text-foreground text-sm font-semibold mb-1">
+                <span className="text-muted-foreground font-normal mr-2">{String(i + 1).padStart(2, "0")}</span>
+                {s.label}
+              </p>
+              <p className="text-muted-foreground text-xs">{s.desc}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Animated bottom bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="border-t border-foreground px-6 md:px-10 py-4 flex items-center justify-between"
-      >
-        <motion.span
-          className="tech-label text-eng-orange"
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          ↓ SCROLL TO EXPLORE
-        </motion.span>
-        <span className="tech-label text-muted-foreground">KAUST, SAUDI ARABIA</span>
-      </motion.div>
+      {/* Bottom divider */}
+      <div className="border-t border-border px-6 md:px-10 lg:px-16 py-3 flex items-center justify-between">
+        <span className="section-label text-eng-orange">↓ Scroll</span>
+        <span className="section-label">KAUST, Saudi Arabia</span>
+      </div>
     </section>
   );
 };
