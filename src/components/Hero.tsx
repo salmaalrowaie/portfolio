@@ -6,7 +6,7 @@ const charVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.3 + i * 0.03, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: 0.3 + i * 0.03, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
