@@ -38,9 +38,9 @@ const fadeUp = {
 };
 
 const specialties = [
-  { label: "Product Design & CAD", desc: "SolidWorks, CATIA, Fusion 360", color: "text-eng-orange" },
-  { label: "Analysis & Simulation", desc: "FEA, CFD, Thermal, ANSYS", color: "text-eng-magenta" },
-  { label: "Prototyping & Manufacturing", desc: "CNC, 3D Printing, Laser Cutting", color: "text-eng-blue" },
+  { label: "Product Design & CAD", desc: "SolidWorks · CATIA · Fusion 360", color: "text-eng-orange", hoverBg: "hover:bg-eng-orange/5", hoverBorder: "hover:border-eng-orange" },
+  { label: "Analysis & Simulation", desc: "FEA · CFD · Thermal · ANSYS", color: "text-eng-magenta", hoverBg: "hover:bg-eng-magenta/5", hoverBorder: "hover:border-eng-magenta" },
+  { label: "Prototyping & Mfg", desc: "CNC · 3D Printing · Laser Cutting", color: "text-eng-blue", hoverBg: "hover:bg-eng-blue/5", hoverBorder: "hover:border-eng-blue" },
 ];
 
 export const Hero = () => {
@@ -49,8 +49,8 @@ export const Hero = () => {
   const headlineY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section ref={ref} className="relative min-h-[90vh] flex flex-col justify-center bg-construction-lines overflow-hidden">
-      <div className="px-6 md:px-10 lg:px-16 py-16">
+    <section ref={ref} className="relative min-h-[85vh] flex flex-col justify-center bg-construction-lines overflow-hidden">
+      <div className="px-6 md:px-10 lg:px-16 py-14">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-start">
           {/* Left — Headline */}
           <motion.div style={{ y: headlineY }}>
@@ -59,12 +59,12 @@ export const Hero = () => {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="section-label mb-6 text-eng-orange"
+              className="section-label mb-5 text-eng-orange"
             >
               Mechanical Engineer
             </motion.p>
 
-            <h1 className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-foreground mb-8">
+            <h1 className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight text-foreground mb-6">
               <AnimatedText text="Salma" />
               <br />
               <AnimatedText text="Alrowaie" className="text-eng-orange" />
@@ -77,8 +77,9 @@ export const Hero = () => {
               animate="visible"
               className="text-muted-foreground max-w-md leading-relaxed text-[15px]"
             >
-              Mechanical engineer focused on design, analysis, prototyping, and product development. Currently pursuing an MS in Technology, Innovation & Entrepreneurship at{" "}
-              <span className="text-eng-blue font-medium">KAUST</span>.
+              Design-driven mechanical engineer focused on product development, analysis, and prototyping. Currently pursuing an MS at{" "}
+              <span className="text-eng-blue font-medium">KAUST</span> after completing a BS at{" "}
+              <span className="text-eng-magenta font-medium">Purdue</span>.
             </motion.p>
 
             <motion.div
@@ -86,7 +87,7 @@ export const Hero = () => {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="flex gap-3 mt-8"
+              className="flex gap-3 mt-7"
             >
               <a
                 href="mailto:salmarowaie@gmail.com"
@@ -117,9 +118,9 @@ export const Hero = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="border border-border p-6 lg:p-8 space-y-5"
+            className="border border-border divide-y divide-border"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 grid grid-cols-2 gap-4">
               <div>
                 <p className="section-label mb-1">Education</p>
                 <p className="text-foreground text-sm font-medium">MS — <span className="text-eng-blue">KAUST</span></p>
@@ -132,9 +133,7 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="h-px bg-border" />
-
-            <div>
+            <div className="p-5">
               <p className="section-label mb-2">Focus Areas</p>
               <div className="flex flex-wrap gap-1.5">
                 {["Product Design", "FEA/CFD", "Prototyping", "DFM", "Systems Design", "R&D"].map((tag, i) => {
@@ -148,13 +147,16 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="h-px bg-border" />
-
-            <div>
+            <div className="p-5">
               <p className="section-label mb-2">Tools</p>
               <p className="text-muted-foreground text-xs leading-relaxed">
                 SolidWorks · CATIA · ANSYS · MATLAB · Python · Fusion 360
               </p>
+            </div>
+
+            <div className="p-5">
+              <p className="section-label mb-1">Currently</p>
+              <p className="text-foreground text-sm">Seeking design & R&D engineering roles</p>
             </div>
           </motion.div>
         </div>
@@ -165,10 +167,10 @@ export const Hero = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="grid md:grid-cols-3 gap-px bg-border mt-14 border border-border"
+          className="grid md:grid-cols-3 gap-px bg-border mt-12 border border-border"
         >
           {specialties.map((s, i) => (
-            <div key={s.label} className="bg-background p-5 group hover:bg-secondary transition-colors duration-200">
+            <div key={s.label} className={`bg-background p-5 border-b-2 border-b-transparent ${s.hoverBorder} ${s.hoverBg} transition-all duration-200 cursor-default`}>
               <p className="text-foreground text-sm font-semibold mb-1">
                 <span className={`${s.color} font-bold mr-2`}>{String(i + 1).padStart(2, "0")}</span>
                 {s.label}
