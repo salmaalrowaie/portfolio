@@ -7,10 +7,12 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import { ContactSection } from "@/components/ContactSection";
 import { projects } from "@/data/projects";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useState } from "react";
 
 const Index = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const [viewMode, setViewMode] = useState<"stacked" | "grid">("stacked");
 
   return (
     <div className="min-h-screen bg-background">
@@ -25,9 +27,9 @@ const Index = () => {
       <AboutSection />
 
       {/* Projects */}
-      <section id="projects" className="py-16 border-b border-border bg-grid-subtle">
+      <section id="projects" className="py-14 border-b border-border">
         <div className="px-6 md:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-[200px_1fr] gap-8 mb-10">
+          <div className="grid lg:grid-cols-[200px_1fr] gap-8 mb-8">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -37,25 +39,63 @@ const Index = () => {
               Selected Work
             </motion.p>
 
-            <div>
-              <motion.h2
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl md:text-3xl text-foreground mb-1 tracking-tight"
+                >
+                  Featured <span className="text-eng-orange">Projects</span>
+                </motion.h2>
+                <p className="section-label">Click any project for the full case study</p>
+              </div>
+
+              {/* View toggle */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="text-2xl md:text-3xl text-foreground mb-2 tracking-tight"
+                className="flex border border-border shrink-0"
               >
-                Featured <span className="text-eng-orange">Projects</span>
-              </motion.h2>
-              <p className="section-label">Click any project for the full case study</p>
+                <button
+                  onClick={() => setViewMode("stacked")}
+                  className={`tech-label px-3 py-1.5 transition-colors duration-200 ${viewMode === "stacked" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  List
+                </button>
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`tech-label px-3 py-1.5 border-l border-border transition-colors duration-200 ${viewMode === "grid" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  Grid
+                </button>
+              </motion.div>
             </div>
           </div>
 
-          <div className="space-y-4 lg:ml-[232px]">
+          <div className={`lg:ml-[232px] ${viewMode === "grid" ? "grid md:grid-cols-2 gap-4" : "space-y-4"}`}>
             {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+              <ProjectCard key={project.id} project={project} index={index} viewMode={viewMode} />
             ))}
           </div>
+
+          {/* View All CTA */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="lg:ml-[232px] mt-8 flex justify-center"
+          >
+            <button
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              className="tech-label px-8 py-3 border border-foreground text-foreground hover:bg-eng-magenta hover:border-eng-magenta hover:text-background transition-colors duration-200"
+            >
+              View All Projects →
+            </button>
+          </motion.div>
         </div>
       </section>
 

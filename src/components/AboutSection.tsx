@@ -8,16 +8,16 @@ const fadeUp = {
   }),
 };
 
-const highlights = [
-  { label: "Education", value: "MS KAUST · BS Purdue", color: "border-l-eng-blue" },
-  { label: "Focus", value: "Design & Manufacturing", color: "border-l-eng-orange" },
-  { label: "Seeking", value: "Mech Design / R&D Roles", color: "border-l-eng-magenta" },
-  { label: "Location", value: "KAUST, Saudi Arabia", color: "border-l-eng-blue" },
+const infoCards = [
+  { label: "Design Philosophy", value: "Function-first, then elegance. Every part should earn its place.", color: "border-l-eng-orange" },
+  { label: "Strengths", value: "Taking projects from concept through analysis to a manufactured product.", color: "border-l-eng-magenta" },
+  { label: "Interests", value: "Consumer products, robotics, medical devices, sustainable systems.", color: "border-l-eng-blue" },
+  { label: "Targeting", value: "Mechanical design, product development, and R&D engineering roles.", color: "border-l-eng-orange" },
 ];
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-16 border-b border-border">
+    <section id="about" className="py-14 border-b border-border">
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
           <motion.p
@@ -35,9 +35,9 @@ export const AboutSection = () => {
             {/* Left — text */}
             <div className="space-y-4 text-muted-foreground text-[14px] leading-[1.75]">
               {[
-                <>Mechanical engineer currently pursuing a Master's in Technology, Innovation & Entrepreneurship at <span className="text-eng-blue font-medium">KAUST</span>, sponsored through the KGSP program.</>,
-                <>I hold a Bachelor's in Mechanical Engineering from <span className="text-eng-magenta font-medium">Purdue University</span>, with strong foundations in design, analysis, manufacturing, and systems thinking.</>,
-                "My work spans product design, mechanical systems, CAD/FEA/CFD analysis, prototyping, and taking projects from concept through manufacturing.",
+                "I approach engineering the way you'd approach a well-structured argument — every decision backed by analysis, every component justified by its function. I enjoy the full arc of a project: defining the problem, exploring solutions, running the numbers, and building something that works.",
+                "My work spans CAD modeling, FEA/CFD simulation, hands-on prototyping, and design for manufacturing. I'm most energized when I can move between the digital model and the physical prototype, iterating until the design is right.",
+                "I care about clean documentation, clear communication, and building things that are both technically sound and thoughtfully designed.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
@@ -52,7 +52,7 @@ export const AboutSection = () => {
               ))}
             </div>
 
-            {/* Right — highlights */}
+            {/* Right — info cards */}
             <motion.div
               custom={0.15}
               variants={fadeUp}
@@ -61,10 +61,10 @@ export const AboutSection = () => {
               viewport={{ once: true }}
               className="border border-border divide-y divide-border"
             >
-              {highlights.map(h => (
+              {infoCards.map(h => (
                 <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color}`}>
                   <p className="section-label mb-0.5">{h.label}</p>
-                  <p className="text-foreground text-sm font-medium">{h.value}</p>
+                  <p className="text-foreground text-sm">{h.value}</p>
                 </div>
               ))}
             </motion.div>
