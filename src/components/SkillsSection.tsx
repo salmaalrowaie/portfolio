@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { skillCategories } from "@/data/experience";
+import { EngineeringAccent } from "./EngineeringAccent";
 
 const categoryAccents = [
   { num: "text-eng-orange", pill: "hover:bg-eng-orange hover:text-background hover:border-eng-orange", border: "hover:border-l-eng-orange" },
@@ -9,8 +10,11 @@ const categoryAccents = [
 
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-14 border-b border-border bg-grid-fine">
-      <div className="px-6 md:px-10 lg:px-16">
+    <section id="skills" className="py-14 border-b border-border bg-grid-fine relative overflow-hidden">
+      <EngineeringAccent type="gear" size={220} className="absolute -bottom-16 -right-16 opacity-[0.03]" speed={90} />
+      <EngineeringAccent type="ring" size={140} className="absolute top-8 -left-12 opacity-[0.03]" speed={120} />
+
+      <div className="px-6 md:px-10 lg:px-16 relative z-10">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
           <motion.p
             initial={{ opacity: 0 }}

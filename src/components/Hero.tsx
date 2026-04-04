@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { EngineeringAccent } from "./EngineeringAccent";
 
 const charVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -38,9 +39,9 @@ const fadeUp = {
 };
 
 const specialties = [
-  { label: "Product Design & CAD", desc: "SolidWorks · CATIA · Fusion 360", color: "text-eng-orange", hoverBg: "hover:bg-eng-orange/5", hoverBorder: "hover:border-eng-orange" },
-  { label: "Analysis & Simulation", desc: "FEA · CFD · Thermal · ANSYS", color: "text-eng-magenta", hoverBg: "hover:bg-eng-magenta/5", hoverBorder: "hover:border-eng-magenta" },
-  { label: "Prototyping & Mfg", desc: "CNC · 3D Printing · Laser Cutting", color: "text-eng-blue", hoverBg: "hover:bg-eng-blue/5", hoverBorder: "hover:border-eng-blue" },
+  { label: "Product Design & CAD", desc: "SolidWorks · CATIA · Fusion 360", color: "text-eng-orange", hoverBg: "hover:bg-eng-orange/5", hoverBorder: "hover:border-eng-orange", hoverY: "hover:-translate-y-0.5" },
+  { label: "Analysis & Simulation", desc: "FEA · CFD · Thermal · ANSYS", color: "text-eng-magenta", hoverBg: "hover:bg-eng-magenta/5", hoverBorder: "hover:border-eng-magenta", hoverY: "hover:-translate-y-0.5" },
+  { label: "Prototyping & Mfg", desc: "CNC · 3D Printing · Laser Cutting", color: "text-eng-blue", hoverBg: "hover:bg-eng-blue/5", hoverBorder: "hover:border-eng-blue", hoverY: "hover:-translate-y-0.5" },
 ];
 
 export const Hero = () => {
@@ -77,9 +78,7 @@ export const Hero = () => {
               animate="visible"
               className="text-muted-foreground max-w-md leading-relaxed text-[15px]"
             >
-              Design-driven mechanical engineer focused on product development, analysis, and prototyping. Currently pursuing an MS at{" "}
-              <span className="text-eng-blue font-medium">KAUST</span> after completing a BS at{" "}
-              <span className="text-eng-magenta font-medium">Purdue</span>.
+              Mechanical engineer focused on turning concepts into functional, well-resolved products through design, analysis, and prototyping.
             </motion.p>
 
             <motion.div
@@ -89,12 +88,12 @@ export const Hero = () => {
               animate="visible"
               className="flex gap-3 mt-7"
             >
-              <a
-                href="mailto:salmarowaie@gmail.com"
-                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-eng-orange hover:border-eng-orange hover:text-background transition-colors duration-200"
+              <button
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                className="tech-label px-5 py-2.5 bg-eng-orange text-background border border-eng-orange hover:bg-transparent hover:text-foreground transition-colors duration-200"
               >
-                Email
-              </a>
+                View Work
+              </button>
               <a
                 href="https://www.linkedin.com/in/salma-alrowaie/"
                 target="_blank"
@@ -103,62 +102,45 @@ export const Hero = () => {
               >
                 LinkedIn
               </a>
-              <button
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="tech-label px-5 py-2.5 bg-eng-orange text-background border border-eng-orange hover:bg-transparent hover:text-foreground transition-colors duration-200"
+              <a
+                href="mailto:salmarowaie@gmail.com"
+                className="tech-label px-5 py-2.5 border border-foreground text-foreground hover:bg-eng-magenta hover:border-eng-magenta hover:text-background transition-colors duration-200"
               >
-                View Work
-              </button>
+                Email
+              </a>
             </motion.div>
           </motion.div>
 
-          {/* Right — Summary card */}
-          <motion.div
-            custom={0.4}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="border border-border divide-y divide-border"
-          >
-            <div className="p-5 grid grid-cols-2 gap-4">
-              <div>
-                <p className="section-label mb-1">Education</p>
-                <p className="text-foreground text-sm font-medium">MS — <span className="text-eng-blue">KAUST</span></p>
-                <p className="text-muted-foreground text-xs">Technology & Innovation</p>
+          {/* Right — Compact identity card */}
+          <div className="relative">
+            <EngineeringAccent type="gear" size={180} className="absolute -top-8 -right-8 opacity-[0.04]" />
+            <motion.div
+              custom={0.4}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="border border-border divide-y divide-border relative z-10"
+            >
+              <div className="p-5">
+                <p className="section-label mb-1.5 text-eng-blue">Current</p>
+                <p className="text-foreground text-sm font-medium">MS in Technology, Innovation & Entrepreneurship</p>
+                <p className="text-muted-foreground text-xs mt-0.5">King Abdullah University of Science and Technology (KAUST)</p>
               </div>
-              <div>
-                <p className="section-label mb-1">Undergraduate</p>
-                <p className="text-foreground text-sm font-medium">BS — <span className="text-eng-magenta">Purdue</span></p>
-                <p className="text-muted-foreground text-xs">Mechanical Engineering</p>
+
+              <div className="p-5">
+                <p className="section-label mb-1.5 text-eng-magenta">Background</p>
+                <p className="text-foreground text-sm font-medium">BS in Mechanical Engineering</p>
+                <p className="text-muted-foreground text-xs mt-0.5">Purdue University</p>
               </div>
-            </div>
 
-            <div className="p-5">
-              <p className="section-label mb-2">Focus Areas</p>
-              <div className="flex flex-wrap gap-1.5">
-                {["Product Design", "FEA/CFD", "Prototyping", "DFM", "Systems Design", "R&D"].map((tag, i) => {
-                  const colors = ["border-eng-orange/40 text-eng-orange", "border-eng-magenta/40 text-eng-magenta", "border-eng-blue/40 text-eng-blue"];
-                  return (
-                    <span key={tag} className={`tech-label px-2.5 py-1 border ${colors[i % 3]} hover:bg-foreground hover:text-background hover:border-foreground transition-colors duration-200`}>
-                      {tag}
-                    </span>
-                  );
-                })}
+              <div className="p-5">
+                <p className="section-label mb-1.5 text-eng-orange">Direction</p>
+                <p className="text-foreground text-sm leading-relaxed">
+                  Product development, mechanical design, and R&D engineering roles
+                </p>
               </div>
-            </div>
-
-            <div className="p-5">
-              <p className="section-label mb-2">Tools</p>
-              <p className="text-muted-foreground text-xs leading-relaxed">
-                SolidWorks · CATIA · ANSYS · MATLAB · Python · Fusion 360
-              </p>
-            </div>
-
-            <div className="p-5">
-              <p className="section-label mb-1">Currently</p>
-              <p className="text-foreground text-sm">Seeking design & R&D engineering roles</p>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Specialties bar */}
@@ -170,7 +152,7 @@ export const Hero = () => {
           className="grid md:grid-cols-3 gap-px bg-border mt-12 border border-border"
         >
           {specialties.map((s, i) => (
-            <div key={s.label} className={`bg-background p-5 border-b-2 border-b-transparent ${s.hoverBorder} ${s.hoverBg} transition-all duration-200 cursor-default`}>
+            <div key={s.label} className={`bg-background p-5 border-b-2 border-b-transparent ${s.hoverBorder} ${s.hoverBg} ${s.hoverY} transition-all duration-200 cursor-default`}>
               <p className="text-foreground text-sm font-semibold mb-1">
                 <span className={`${s.color} font-bold mr-2`}>{String(i + 1).padStart(2, "0")}</span>
                 {s.label}
