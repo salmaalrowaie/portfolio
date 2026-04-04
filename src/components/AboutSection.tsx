@@ -9,10 +9,10 @@ const fadeUp = {
 };
 
 const infoCards = [
-  { label: "Design Philosophy", value: "Function-first, then elegance. Every part should earn its place.", color: "border-l-eng-orange" },
-  { label: "Strengths", value: "Taking projects from concept through analysis to a manufactured product.", color: "border-l-eng-magenta" },
-  { label: "Interests", value: "Consumer products, robotics, medical devices, sustainable systems.", color: "border-l-eng-blue" },
-  { label: "Targeting", value: "Mechanical design, product development, and R&D engineering roles.", color: "border-l-eng-orange" },
+  { label: "Design Philosophy", value: "Function first, then elegance. Every part should earn its place.", color: "border-l-eng-orange", hoverColor: "hover:border-l-eng-orange/80" },
+  { label: "Strengths", value: "Concept-to-prototype thinking, analysis-backed design, clear technical communication.", color: "border-l-eng-magenta", hoverColor: "hover:border-l-eng-magenta/80" },
+  { label: "Interests", value: "Product development, robotics, mechanical systems, user-centered engineering.", color: "border-l-eng-blue", hoverColor: "hover:border-l-eng-blue/80" },
+  { label: "Best At", value: "Turning ambiguous technical ideas into structured, buildable solutions.", color: "border-l-eng-orange", hoverColor: "hover:border-l-eng-orange/80" },
 ];
 
 export const AboutSection = () => {
@@ -35,9 +35,9 @@ export const AboutSection = () => {
             {/* Left — text */}
             <div className="space-y-4 text-muted-foreground text-[14px] leading-[1.75]">
               {[
-                "I approach engineering the way you'd approach a well-structured argument — every decision backed by analysis, every component justified by its function. I enjoy the full arc of a project: defining the problem, exploring solutions, running the numbers, and building something that works.",
-                "My work spans CAD modeling, FEA/CFD simulation, hands-on prototyping, and design for manufacturing. I'm most energized when I can move between the digital model and the physical prototype, iterating until the design is right.",
-                "I care about clean documentation, clear communication, and building things that are both technically sound and thoughtfully designed.",
+                "I approach engineering as a balance of function, analysis, and buildability. I enjoy taking ideas from early concept through modeling, validation, prototyping, and refinement — until they are technically sound and practical to manufacture.",
+                "My work is strongest when I can move between structured technical problem-solving and the bigger product picture — making sure a design is not only functional, but thoughtful, well-documented, and useful in the real world.",
+                "I'm especially drawn to product development and R&D environments where iteration matters, and where engineering decisions need to be analytical, hands-on, and clearly communicated.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
@@ -52,7 +52,7 @@ export const AboutSection = () => {
               ))}
             </div>
 
-            {/* Right — info cards */}
+            {/* Right — strategy card */}
             <motion.div
               custom={0.15}
               variants={fadeUp}
@@ -62,7 +62,7 @@ export const AboutSection = () => {
               className="border border-border divide-y divide-border"
             >
               {infoCards.map(h => (
-                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color}`}>
+                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color} hover:bg-muted/30 transition-colors duration-200 cursor-default`}>
                   <p className="section-label mb-0.5">{h.label}</p>
                   <p className="text-foreground text-sm">{h.value}</p>
                 </div>

@@ -5,6 +5,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ContactSection } from "@/components/ContactSection";
+import { EngineeringAccent } from "@/components/EngineeringAccent";
 import { projects } from "@/data/projects";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useState } from "react";
@@ -27,8 +28,10 @@ const Index = () => {
       <AboutSection />
 
       {/* Projects */}
-      <section id="projects" className="py-14 border-b border-border">
-        <div className="px-6 md:px-10 lg:px-16">
+      <section id="projects" className="py-14 border-b border-border relative overflow-hidden">
+        <EngineeringAccent type="crosshair" size={100} className="absolute top-12 right-16 opacity-[0.03]" />
+
+        <div className="px-6 md:px-10 lg:px-16 relative z-10">
           <div className="grid lg:grid-cols-[200px_1fr] gap-8 mb-8">
             <motion.p
               initial={{ opacity: 0 }}
@@ -106,9 +109,12 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border py-5">
         <div className="px-6 md:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="section-label">© {new Date().getFullYear()} Salma Alrowaie</span>
+          <div className="flex items-center gap-2">
+            <span className="section-label">© {new Date().getFullYear()} Salma Alrowaie</span>
+            <EngineeringAccent type="hammer" size={14} className="opacity-20" />
+          </div>
           <div className="flex gap-6">
-            <a href="mailto:salmarowaie@gmail.com" className="section-label hover:text-eng-orange transition-colors">
+            <a href="mailto:salmarowaie@gmail.com" className="section-label hover:text-eng-magenta transition-colors">
               Email
             </a>
             <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="section-label hover:text-eng-blue transition-colors">
