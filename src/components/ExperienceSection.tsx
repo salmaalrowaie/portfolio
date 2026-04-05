@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { experiences } from "@/data/experience";
 import { useState } from "react";
+import { TypingText } from "./TypingText";
 
 const dotColors = ["bg-eng-orange", "bg-eng-magenta", "bg-eng-blue"];
 const textColors = ["text-eng-orange", "text-eng-magenta", "text-eng-blue"];
