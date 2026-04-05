@@ -11,8 +11,8 @@ const categoryAccents = [
 export const SkillsSection = () => {
   return (
     <section id="skills" className="py-14 border-b border-border bg-grid-fine relative overflow-hidden">
-      <EngineeringAccent type="gear" size={220} className="absolute -bottom-16 -right-16 opacity-[0.03]" speed={90} />
-      <EngineeringAccent type="ring" size={140} className="absolute top-8 -left-12 opacity-[0.03]" speed={120} />
+      <EngineeringAccent type="gear" size={240} className="absolute -bottom-16 -right-16 opacity-[0.06]" speed={90} />
+      <EngineeringAccent type="ring" size={160} className="absolute top-8 -left-12 opacity-[0.06]" speed={120} />
 
       <div className="px-6 md:px-10 lg:px-16 relative z-10">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">

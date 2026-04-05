@@ -29,7 +29,8 @@ const Index = () => {
 
       {/* Projects */}
       <section id="projects" className="py-14 border-b border-border relative overflow-hidden">
-        <EngineeringAccent type="crosshair" size={100} className="absolute top-12 right-16 opacity-[0.03]" />
+        <EngineeringAccent type="crosshair" size={120} className="absolute top-12 right-16 opacity-[0.06]" />
+        <EngineeringAccent type="gear" size={100} className="absolute bottom-20 left-8 opacity-[0.05]" speed={80} />
 
         <div className="px-6 md:px-10 lg:px-16 relative z-10">
           <div className="grid lg:grid-cols-[200px_1fr] gap-8 mb-8">

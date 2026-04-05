@@ -113,7 +113,8 @@ export const Hero = () => {
 
           {/* Right — Compact identity card */}
           <div className="relative">
-            <EngineeringAccent type="gear" size={180} className="absolute -top-8 -right-8 opacity-[0.04]" />
+            <EngineeringAccent type="gear" size={200} className="absolute -top-10 -right-10 opacity-[0.07]" />
+            <EngineeringAccent type="ring" size={80} className="absolute bottom-4 right-4 opacity-[0.05]" speed={100} />
             <motion.div
               custom={0.4}
               variants={fadeUp}
