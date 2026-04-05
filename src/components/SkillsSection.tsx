@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { skillCategories } from "@/data/experience";
 import { EngineeringAccent } from "./EngineeringAccent";
+import { TypingText } from "./TypingText";
 
 const categoryAccents = [
   { num: "text-eng-orange", pill: "hover:bg-eng-orange hover:text-background hover:border-eng-orange", border: "hover:border-l-eng-orange" },
