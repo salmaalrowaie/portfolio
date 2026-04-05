@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TypingText } from "./TypingText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -20,16 +21,7 @@ export const AboutSection = () => {
     <section id="about" className="py-14 border-b border-border">
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
-          <motion.p
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="section-label text-eng-magenta pt-1"
-          >
-            About
-          </motion.p>
+          <TypingText text="About" className="section-label text-eng-magenta pt-1" delay={0.1} />
 
           <div className="grid md:grid-cols-[1fr_280px] gap-10">
             {/* Left — text */}
@@ -62,7 +54,7 @@ export const AboutSection = () => {
               className="border border-border divide-y divide-border"
             >
               {infoCards.map(h => (
-                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color} hover:bg-muted/30 transition-colors duration-200 cursor-default`}>
+                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color} hover:bg-muted/30 hover:-translate-y-[1px] transition-all duration-200 cursor-default`}>
                   <p className="section-label mb-0.5">{h.label}</p>
                   <p className="text-foreground text-sm">{h.value}</p>
                 </div>
