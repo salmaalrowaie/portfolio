@@ -13,14 +13,7 @@ export const ExperienceSection = () => {
     <section id="experience" className="py-14 border-b border-border">
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="section-label text-eng-orange pt-1"
-          >
-            Experience
-          </motion.p>
+          <TypingText text="Experience" className="section-label text-eng-orange pt-1" delay={0.1} />
 
           <div className="divide-y divide-border border-t border-border">
             {experiences.map((exp, i) => {

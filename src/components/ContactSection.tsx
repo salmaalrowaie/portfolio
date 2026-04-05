@@ -13,14 +13,7 @@ export const ContactSection = () => {
     <section id="contact" className="py-14">
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="section-label text-eng-blue pt-1"
-          >
-            Contact
-          </motion.p>
+          <TypingText text="Contact" className="section-label text-eng-blue pt-1" delay={0.1} />
 
           <div>
             <motion.h2

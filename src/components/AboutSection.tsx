@@ -54,7 +54,7 @@ export const AboutSection = () => {
               className="border border-border divide-y divide-border"
             >
               {infoCards.map(h => (
-                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color} hover:bg-muted/30 transition-colors duration-200 cursor-default`}>
+                <div key={h.label} className={`px-5 py-3.5 border-l-2 ${h.color} hover:bg-muted/30 hover:-translate-y-[1px] transition-all duration-200 cursor-default`}>
                   <p className="section-label mb-0.5">{h.label}</p>
                   <p className="text-foreground text-sm">{h.value}</p>
                 </div>
