@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TypingText } from "./TypingText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
