@@ -23,7 +23,7 @@ export const TypingText = ({ text, className = "", delay = 0, speed = 0.035, onc
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: delay + i * speed, duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+      transition: { delay: delay + i * speed, duration: 0.25, ease: [0.22, 1, 0.36, 1] as const },
     }),
   };
 
