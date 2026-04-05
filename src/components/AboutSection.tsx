@@ -21,16 +21,7 @@ export const AboutSection = () => {
     <section id="about" className="py-14 border-b border-border">
       <div className="px-6 md:px-10 lg:px-16">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8">
-          <motion.p
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="section-label text-eng-magenta pt-1"
-          >
-            About
-          </motion.p>
+          <TypingText text="About" className="section-label text-eng-magenta pt-1" delay={0.1} />
 
           <div className="grid md:grid-cols-[1fr_280px] gap-10">
             {/* Left — text */}
