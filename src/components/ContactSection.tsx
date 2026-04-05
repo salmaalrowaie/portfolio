@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { TypingText } from "./TypingText";
 
 const contactItems = [
   { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com", hoverColor: "hover:border-l-eng-orange hover:text-eng-orange" },
