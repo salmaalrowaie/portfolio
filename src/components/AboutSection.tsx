@@ -59,12 +59,17 @@ export const AboutSection = () => {
             >
               {infoCards.map((h, i) => {
                 const isActive = activeIndex === i;
+                const bgColors: Record<string, string> = {
+                  "border-l-eng-orange": "bg-eng-orange/8",
+                  "border-l-eng-magenta": "bg-eng-magenta/8",
+                  "border-l-eng-blue": "bg-eng-blue/8",
+                };
                 return (
                   <div
                     key={h.label}
                     onMouseEnter={() => setActiveIndex(i)}
                     className={`px-5 py-3.5 border-l-2 ${h.color} cursor-default transition-all duration-300 ${
-                      isActive ? "bg-muted/40 -translate-y-[1px]" : "opacity-50 hover:opacity-75"
+                      isActive ? `${bgColors[h.color] || "bg-muted/40"} -translate-y-[1px]` : "opacity-50 hover:opacity-75"
                     }`}
                   >
                     <p className={`section-label mb-0.5 transition-colors duration-300 ${isActive ? h.activeColor : ""}`}>

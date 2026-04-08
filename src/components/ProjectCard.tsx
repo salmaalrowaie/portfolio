@@ -9,9 +9,9 @@ interface ProjectCardProps {
 }
 
 const accentColors = [
-  { border: "group-hover:border-eng-orange", text: "group-hover:text-eng-orange", bg: "group-hover:bg-eng-orange/5", num: "text-eng-orange", arrow: "group-hover:text-eng-orange" },
-  { border: "group-hover:border-eng-magenta", text: "group-hover:text-eng-magenta", bg: "group-hover:bg-eng-magenta/5", num: "text-eng-magenta", arrow: "group-hover:text-eng-magenta" },
-  { border: "group-hover:border-eng-blue", text: "group-hover:text-eng-blue", bg: "group-hover:bg-eng-blue/5", num: "text-eng-blue", arrow: "group-hover:text-eng-blue" },
+  { border: "group-hover:border-eng-orange", text: "group-hover:text-eng-orange", bg: "group-hover:bg-eng-orange/5", num: "text-eng-orange", arrow: "group-hover:text-eng-orange", hoverBg: "group-hover:bg-foreground", hoverText: "group-hover:text-background", accentText: "group-hover:text-eng-orange" },
+  { border: "group-hover:border-eng-magenta", text: "group-hover:text-eng-magenta", bg: "group-hover:bg-eng-magenta/5", num: "text-eng-magenta", arrow: "group-hover:text-eng-magenta", hoverBg: "group-hover:bg-foreground", hoverText: "group-hover:text-background", accentText: "group-hover:text-eng-magenta" },
+  { border: "group-hover:border-eng-blue", text: "group-hover:text-eng-blue", bg: "group-hover:bg-eng-blue/5", num: "text-eng-blue", arrow: "group-hover:text-eng-blue", hoverBg: "group-hover:bg-foreground", hoverText: "group-hover:text-background", accentText: "group-hover:text-eng-blue" },
 ];
 
 export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
