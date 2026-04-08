@@ -99,7 +99,7 @@ export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
           <div className="flex items-center justify-between">
             <div className="flex flex-wrap gap-1.5">
               {project.tools.slice(0, 4).map(tool => (
-                <span key={tool} className="tech-label px-2 py-0.5 border border-border text-muted-foreground group-hover:border-foreground/30 transition-colors">
+                <span key={tool} className={`tech-label px-2 py-0.5 border border-border text-muted-foreground group-hover:border-foreground/30 ${accent.hoverText} transition-colors`}>
                   {tool}
                 </span>
               ))}
