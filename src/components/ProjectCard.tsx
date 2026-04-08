@@ -85,11 +85,11 @@ export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
               <span className="section-label">{project.semester} {project.year}</span>
             </div>
 
-            <h3 className={`text-xl lg:text-2xl text-foreground mb-3 leading-tight font-bold tracking-tight ${accent.text} transition-colors duration-300`}>
+            <h3 className={`text-xl lg:text-2xl text-foreground mb-3 leading-tight font-bold tracking-tight ${accent.accentText} transition-colors duration-300`}>
               {project.title}
             </h3>
 
-            <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2">
+            <p className={`text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2 ${accent.hoverText} transition-colors duration-300`}>
               {project.summary}
             </p>
 
