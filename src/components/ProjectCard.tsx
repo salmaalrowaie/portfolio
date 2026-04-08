@@ -27,7 +27,7 @@ export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
         onClick={() => navigate(`/project/${project.id}`)}
-        className={`group cursor-pointer border border-border bg-background ${accent.border} transition-all duration-300`}
+        className={`group cursor-pointer border border-border bg-background ${accent.border} ${accent.hoverBg} transition-all duration-500`}
       >
         <div className="aspect-[4/3] bg-secondary overflow-hidden border-b border-border">
           <img
