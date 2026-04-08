@@ -41,10 +41,10 @@ export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
             <span className={`section-label ${accent.num} font-bold`}>{num}</span>
             <span className="section-label">{project.semester} {project.year}</span>
           </div>
-          <h3 className={`text-lg text-foreground mb-2 font-bold tracking-tight ${accent.text} transition-colors duration-300`}>
+          <h3 className={`text-lg text-foreground mb-2 font-bold tracking-tight ${accent.accentText} transition-colors duration-300`}>
             {project.title}
           </h3>
-          <p className="text-muted-foreground text-xs mb-3 leading-relaxed line-clamp-2">{project.summary}</p>
+          <p className={`text-muted-foreground text-xs mb-3 leading-relaxed line-clamp-2 ${accent.hoverText} transition-colors duration-300`}>{project.summary}</p>
           <div className="flex flex-wrap gap-1 mb-3">
             {project.tools.slice(0, 3).map(tool => (
               <span key={tool} className="tech-label px-1.5 py-0.5 border border-border text-muted-foreground">
