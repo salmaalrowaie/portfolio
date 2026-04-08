@@ -65,7 +65,7 @@ export const ProjectCard = ({ project, index, viewMode }: ProjectCardProps) => {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as const }}
       onClick={() => navigate(`/project/${project.id}`)}
-      className={`group cursor-pointer border border-border bg-background ${accent.border} transition-all duration-300`}
+      className={`group cursor-pointer border border-border bg-background ${accent.border} ${accent.hoverBg} transition-all duration-500`}
     >
       <div className="grid md:grid-cols-[2fr_3fr]">
         {/* Image */}
