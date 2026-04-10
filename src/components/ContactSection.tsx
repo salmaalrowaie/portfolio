@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { TypingText } from "./TypingText";
 
 const contactItems = [
-  { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com", hoverColor: "hover:border-l-eng-orange hover:text-eng-orange" },
-  { label: "LinkedIn", value: "salma-alrowaie", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true, hoverColor: "hover:border-l-eng-blue hover:text-eng-blue" },
-  { label: "Location", value: "KAUST, Saudi Arabia", hoverColor: "hover:border-l-eng-magenta" },
-  { label: "Resume", value: "Download PDF", href: "#", hoverColor: "hover:border-l-eng-orange hover:text-eng-orange" },
+  { label: "Email", value: "salmarowaie@gmail.com", href: "mailto:salmarowaie@gmail.com", accent: "group-hover:text-eng-orange" },
+  { label: "LinkedIn", value: "salma-alrowaie", href: "https://www.linkedin.com/in/salma-alrowaie/", external: true, accent: "group-hover:text-eng-blue" },
+  { label: "Location", value: "KAUST, Saudi Arabia", accent: "group-hover:text-eng-magenta" },
+  { label: "Resume", value: "Download PDF", href: "#", accent: "group-hover:text-eng-orange" },
 ];
 
 export const ContactSection = () => {
@@ -50,10 +50,10 @@ export const ContactSection = () => {
                     key={item.label}
                     {...(item.href ? { href: item.href } : {})}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={`bg-background px-5 py-4 border-l-2 border-l-transparent ${item.hoverColor} transition-all duration-200 ${item.href ? "hover:bg-secondary cursor-pointer" : ""}`}
+                    className={`group bg-background px-5 py-4 hover:bg-foreground transition-all duration-500 ${item.href ? "cursor-pointer" : ""}`}
                   >
-                    <p className="section-label mb-1">{item.label}</p>
-                    <p className="text-foreground text-sm font-medium">{item.value}</p>
+                    <p className={`section-label mb-1 text-muted-foreground ${item.accent} transition-colors duration-500`}>{item.label}</p>
+                    <p className={`text-foreground text-sm font-medium group-hover:text-background transition-colors duration-500`}>{item.value}</p>
                   </Tag>
                 );
               })}
