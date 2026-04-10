@@ -72,14 +72,14 @@ export const AboutSection = () => {
                       isActive ? `${bgColors[h.color] || "bg-muted/40"} -translate-y-[1px]` : "opacity-50 hover:opacity-75"
                     }`}
                   >
-                    <p className={`section-label mb-0.5 transition-colors duration-300 ${isActive ? h.activeColor : ""}`}>
+                    <p className={`section-label mb-0.5 transition-colors duration-300 ${isActive ? h.activeColor : "text-muted-foreground"}`}>
                       {h.label}
                     </p>
                     <motion.p
                       initial={false}
                       animate={{ opacity: isActive ? 1 : 0.6, height: isActive ? "auto" : "1.25rem" }}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="text-foreground text-sm overflow-hidden"
+                      className={`text-sm overflow-hidden transition-colors duration-300 ${isActive ? "text-foreground" : "text-muted-foreground"}`}
                     >
                       {h.value}
                     </motion.p>
