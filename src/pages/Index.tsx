@@ -66,13 +66,21 @@ const Index = () => {
               >
                 <button
                   onClick={() => setViewMode("stacked")}
-                  className={`tech-label px-3 py-1.5 transition-colors duration-200 ${viewMode === "stacked" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`tech-label px-3 py-1.5 transition-colors duration-200 ${
+                    viewMode === "stacked"
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   List
                 </button>
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`tech-label px-3 py-1.5 border-l border-border transition-colors duration-200 ${viewMode === "grid" ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`tech-label px-3 py-1.5 border-l border-border transition-colors duration-200 ${
+                    viewMode === "grid"
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   Grid
                 </button>
@@ -94,7 +102,9 @@ const Index = () => {
             className="lg:ml-[232px] mt-8 flex justify-center"
           >
             <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+              }
               className="tech-label px-8 py-3 border border-foreground text-foreground hover:bg-eng-magenta hover:border-eng-magenta hover:text-background transition-colors duration-200"
             >
               View All Projects →
@@ -118,7 +128,12 @@ const Index = () => {
             <a href="mailto:salmarowaie@gmail.com" className="section-label hover:text-eng-magenta transition-colors">
               Email
             </a>
-            <a href="https://www.linkedin.com/in/salma-alrowaie/" target="_blank" rel="noopener noreferrer" className="section-label hover:text-eng-blue transition-colors">
+            <a
+              href="https://www.linkedin.com/in/salma-alrowaie/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="section-label hover:text-eng-blue transition-colors"
+            >
               LinkedIn
             </a>
           </div>
